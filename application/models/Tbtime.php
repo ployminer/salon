@@ -11,7 +11,7 @@ class Tbtime extends CI_Model{
 
     public function read_register_cus()
     {
-        $this->db->select('id_skill,name_skill,name_employee')->from('skilltype');
+        $this->db->select('id_skill,name_skill,name_employee,email_shopowner')->from('skilltype');
         $query = $this->db->get();
         return $query->result();
     }

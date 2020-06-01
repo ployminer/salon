@@ -75,7 +75,8 @@
                 <img src="<?php echo base_url('assets/home/img/beauty-salon.png') ?>" class="w3-circle w3-margin-right" style="width:46px">
             </div>
             <div class="w3-col s8 w3-bar">
-                <h3>"ชื่อร้านนั้นๆ"</h3>
+            <h3>""</h3>
+            <!-- <h3> <?php echo $name_shop?></h3> -->
                 <!-- <span>"ชื่อร้านนั้นๆ"</span> -->
                 <!-- <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
                 <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
@@ -114,7 +115,6 @@
             <div class="w3-row">
                 <div class="w3-col" style="width:75%">
                     <p>
-                        <h4><b><i class="fa fa-dashboard"></i></b></h4>
                     </p>
                 </div>
                 <!-- Button trigger modal -->
@@ -168,17 +168,7 @@
         
 
       </div>
-      <!--Footer-->
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
-        <button class="btn btn-primary">Checkout</button>
-      </div>
-    </div>
-  </div>
-</div> -->
-                    <!-- <p><a href="<?php echo base_url('dataservice/create') ?>" data-toggle="modal" class="btn btn-default pull-right">
-                            <span class="fa fa-plus">เพิ่ม</span>
-                        </a></p> -->
+
                 </div>
             </div>
 
