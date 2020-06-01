@@ -37,6 +37,10 @@
                                                                                                                 <label for="tel"><i class="zmdi zmdi-phone"></i></label>
                                                                                                                 <input type="tel" name="phone" id="phone" placeholder="เบอร์โทรศัพท์" />
                                                                                                   </div>
+                                                                                                  <div class="form-group">
+                                                                                                                <label for="re-pass"><i class="zmdi zmdi-book"></i></label>
+                                                                                                                <input type="password" name="pass" id="pass" placeholder="รหัสผ่าน" />
+                                                                                                  </div>
                                                                                                                                                                                                     
                                                                                                   <div class="form-group form-button">
                                                                                                                 <input type="submit" name="signup" id="signup" class="form-submit" value="ยืนยัน" />

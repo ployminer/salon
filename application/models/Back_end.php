@@ -9,9 +9,9 @@ class Back_end extends CI_Model{
         $this->load->database();
     }
 
-    public function read_register_cus()
+    public function read_register_shop()
     {
-        $this->db->select('id_customer,name_cus,email,phone')->from('register_cus');
+        $this->db->select('id_shop,name_shop,')->from('register_shop');
         $query = $this->db->get();
         return $query->result();
     }

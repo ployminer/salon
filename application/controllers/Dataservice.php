@@ -5,12 +5,18 @@ class Dataservice extends CI_Controller{
     public function __construct() {
         parent::__construct();
         $this->load->helper('url');
-        // $this->load->model('service');
         $this->load->model('dataservicemodel');
-       
+        $this->load->model('register_shop');
+        $this->load->library('session');
+        $this->load->library('form_validation');
+        $email_shopowner = $this->session->userdata('email_shopowner');
+        if(empty($email_shopowner)){
+             redirect('loginshop');
+        }
        
     }
     public function index(){
+       
         $data['read'] = $this->dataservicemodel->read_dataservice();
         $this->load->view('dataservice',$data); 
     }
@@ -19,6 +25,22 @@ class Dataservice extends CI_Controller{
     //     $query = $this->db->get();
     //     return $query->result();
     // }
+
+    public function read($id_shop){
+
+        $data['con'] = $this->dataservicemodel->read_idshop($id_shop);
+        $name_shop = $this->input->post('name_shop');
+
+        if (!empty($name_shop)) {
+            $name_shop = $this->input->post('name_shop');
+
+            $savedata = array(
+                'id_shop' => $id_shop,
+                'name_shop' => $name_shop,
+            );
+            $result = $this->dataservicemodel->read_idshop($savedata);
+    }
+}
 
     public function create() {
         $data['title'] = 'เพิ่ม....';
@@ -53,12 +75,10 @@ class Dataservice extends CI_Controller{
     public function update($id_service){
 
         $data['title'] = 'แก้ไขข้อมูล';
-        // $data['headers'] = $this->load->view('dataservice');
-        $data['con'] = $this->dataservicemodel->read_dataservice($id_service);
-        // $method = $this->input->post('method');
-        
-        
-        if (!empty($id_service)) {
+        $data['con'] = $this->dataservicemodel->read_id($id_service);
+        $servicename = $this->input->post('servicename');
+
+        if (!empty($servicename)) {
             $servicename = $this->input->post('servicename');
             $priceservice = $this->input->post('priceservice');
             $time = $this->input->post('time');
@@ -72,45 +92,15 @@ class Dataservice extends CI_Controller{
             );
 
             $result = $this->dataservicemodel->update_service($savedata);
-            // redirect('update');
+            redirect('dataservice');
 
-            $data['con'] = $this->dataservicemodel->read_dataservice($id_service);
+            // $data['con'] = $this->dataservicemodel->read_id($id_service);
+          
         }
         $this->load->view('update', $data);
+        
     }
 
-        // public function update($id_service){
-
-        //     $data['title'] = 'แก้ไขข้อมูล';
-        //     $data['metod'] = 'Update';
-        //  //   $data['headers'] = $this->load->view('');
-        //  //   $data['menu'] = $this->load->view('');
-
-        //     $data['con'] = $this->dataservicemodel->read_dataservice($id_service);
-        //     $method = $this->input->post('method');
-
-          
-
-        //     if (!empty($method)) {
-        //                 $servicename = $this->input->post('servicename');
-        //                 $priceservice = $this->input->post('priceservice');
-        //                 $time = $this->input->post('time');
-            
-        //                 $savedata = array(
-        //                     'id_service' => $id_service,
-        //                     'servicename' => $servicename,
-        //                     'priceservice' => $priceservice,
-        //                     'time' => $time
-            
-        //                 );
-
-        //                 $result = $this->dataservicemodel->update_service($savedata);
-        //                         redirect('dataservice');
-                    
-        //                         $data['con'] = $this->dataservicemodel->read_dataservice($id_service);
-        //                     }
-        //                     $this->load->view('dataservice', $data);
-        // }
 
     public function delete($id_service) {
             

@@ -22,6 +22,10 @@
              folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet" href="<?php echo base_url('assets/carcareoffice/dist/css/skins/_all-skins.min.css') ?>">
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 <style>
     html,
@@ -54,11 +58,12 @@
 </style>
 
 <body class="w3-white">
+    
 
     <!-- Top container -->
     <div class="w3-bar w3-top w3-indigo w3-large" style="z-index:4">
         <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();">
-        <i class="fa fa-bars"></i> &nbsp;เมนู</button>
+            <i class="fa fa-bars"></i> &nbsp;เมนู</button>
         <span class="w3-bar-item w3-left">SalonManagement</span>
 
     </div>
@@ -67,7 +72,7 @@
     <nav class="w3-sidebar w3-collapse w3-light-blue w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
         <div class="w3-container w3-row">
             <div class="w3-col s4">
-                <img src="<?php echo base_url('assets/home/img/beauty-salon.png')?>" class="w3-circle w3-margin-right" style="width:46px">
+                <img src="<?php echo base_url('assets/home/img/beauty-salon.png') ?>" class="w3-circle w3-margin-right" style="width:46px">
             </div>
             <div class="w3-col s8 w3-bar">
                 <h3>"ชื่อร้านนั้นๆ"</h3>
@@ -80,10 +85,11 @@
         <hr>
         <div class="w3-container">
             <h5>Dashboard</h5>
+            <form action="<?php echo base_url('datahair/create') ?>" method="POST" class="register-form" id="register-form">
         </div>
         <div class="w3-bar-block">
             <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu">
-            <i class="fa fa-remove fa-fw"></i>&nbsp; ปิดเมนู</a>
+                <i class="fa fa-remove fa-fw"></i>&nbsp; ปิดเมนู</a>
             <a href="back" class="w3-bar-item w3-button w3-padding"><i class="fa fa-home fa-fw"></i>&nbsp; หน้าแรก</a>
             <a href="tb_time" class="w3-bar-item w3-button w3-padding "><i class="fa fa-users fa-fw"></i>&nbsp; ตารางเวลา</a>
             <a href="datahair" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>&nbsp; ข้อมูลช่างทำผม</a>
@@ -106,15 +112,57 @@
         <!-- Header -->
         <header class="w3-container" style="padding-top:22px">
             <div class="w3-row">
-            <div class="w3-col" style="width:75%">
+                <div class="w3-col" style="width:75%">
                     <p>
-                        <h4><b><i class="fa fa-dashboard"></i></b></h4>
                     </p>
                 </div>
-                <div class="w3-col" style="width:25%">
-                    <p><a href="" class="btn btn-default pull-right">
-                            <span class="fa fa-plus">เพิ่ม</span>
-                        </a></p>
+                <!-- Button trigger modal -->
+                <div class="w3-col" style="width:25%" >
+                <button type="button" href="<?php echo base_url('datahair/create') ?>" class="btn btn-primary pull-right waves-effect waves-light"  data-toggle="modal" data-target="#modalCart">เพิ่ม</button>
+                <!-- Modal: modalCart -->
+                <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">เพิ่มข้อมูลช่าง</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!-- Body -->
+    
+      
+      <div class="col-md-12"> <br />
+      <form  name="addproduct" action="" method="post" enctype="multipart/form-data"  class="form-horizontal">
+      <div class="form-group">
+      <div class="col-sm-12">
+            <p> ชื่อช่าง</p>
+            <input type="text"  name="name_employee" id="name_employee" class="form-control" required placeholder="ชื่อช่าง" >
+      </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12">
+            <p> ทักษะ </p>
+            <!-- <input name="name_skill" id="name_skill"  class="form-control" type="text"   required placeholder="ทักษะ"> -->
+            <select class="form-control" name="select" id="select" required>
+            <option >เลือกทักษะ</option>
+            <?php foreach ($select as $value) {?>
+            <option value='<?php echo $value->servicename?>'></option>
+            <?php } ?>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-7" >
+            <button href="<?php echo base_url('datahair/index')?>" type="submit" class="btn btn-primary  " name="btnadd"> เพิ่ม </button>
+            <input type="hidden"  name="method" > 
+          </div>
+        </div>
+      </form>
+      </div>
+      </div>
+
                 </div>
             </div>
 
@@ -126,11 +174,10 @@
                 <thead>
                     <tr>
                         <!-- <th>ลำดับ</th> -->
-                        <th>ชื่อ</th>
-                        <th>ทักษะ</th>
-                        <!-- <th>ระยะเวลาทำ</th> -->
-                        <!-- <th>แก้ไข</th>
-                        <th>ลบ</th> -->
+                        <th>รายชื่อช่าง</th>
+                        <th>ทักษะเฉพาะ</th>
+                        <th>แก้ไข</th>
+                        <th>ลบ</th>
                     </tr>
 
 
@@ -139,21 +186,26 @@
                 <?php foreach ($read as $value) { ?>
                     <tbody>
                         <tr>
-
+                            <!-- <td><?php echo $value->id_skill ?></td> -->
                             <td><?php echo $value->name_employee ?></td>
-                            <td><?php echo $value->id_skill ?></td>
-                            <!-- <td><?php echo $value->time ?></td> -->
-                            <!-- <td><?php echo $value->phone ?></td> -->
+                            <td><?php echo $value->name_skill ?></td>
+                            
+
+
+
+                            
+                            <td><a href="<?php echo base_url('datahair/update/' . $value->id_skill) ?>" >
+                            <span>แก้ไข</span>
+                            <td><a href="<?php echo base_url('datahair/delete/' . $value->id_skill) ?>" >
+                            <span>ลบ</span>
+                        </a></td>
                            
-                            <td><button type="button"  data-href="<?php echo $value->id_promotion ?>" id="delete" data-toggle="modal" ">ลบ</button>
-    
-                            </td>
                         </tr>
                     </tbody>
                 <?php } ?>
             </table>
         </div>
-    
+
 
 
         <!-- End page content -->
@@ -161,7 +213,7 @@
 
 
 
-
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script>
         // Get the Sidebar
         var mySidebar = document.getElementById("mySidebar");
@@ -185,6 +237,33 @@
             mySidebar.style.display = "none";
             overlayBg.style.display = "none";
         }
+
+        $(function() {
+
+            $('#confirm-delete').on('show.bs.modal', function(e) {
+                $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+            });
+            $('.clickDelete').on('click', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "GET",
+                    url: "<?php echo base_url('dataservice/delete') ?>" + '/' + $(this).attr('href'),
+                    data: '',
+                    dataType: "json",
+                    success: function(obj) {
+                        location.reload();
+                    }
+                });
+            });
+
+            $('#nav-marketing, #nav-profileuser').addClass('active');
+
+
+
+
+
+
+        });
     </script>
 
 </body>

@@ -80,7 +80,7 @@
         <hr>
         <div class="w3-container">
             <h5>Dashboard</h5>
-            <form action="<?php echo base_url('register/create')?>" method="POST" class="register-form" id="register-form"> 
+            <form action="<?php echo base_url('')?>" method="POST" class="register-form" id="register-form"> 
         </div>
         <div class="w3-bar-block">
             <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu">
@@ -108,15 +108,12 @@
         <header class="w3-container" style="padding-top:22px">
             <div class="w3-row">
             <div class="w3-col" style="width:75%">
-                    <p>
-                        <h4><b><i class="fa fa-dashboard"></i></b></h4>
-                    </p>
                 </div>
-                <div class="w3-col" style="width:25%">
+                <!-- <div class="w3-col" style="width:25%">
                     <p><a href="" class="btn btn-default pull-right">
                             <span class="fa fa-plus">เพิ่ม</span>
                         </a></p>
-                </div>
+                </div> -->
             </div>
 
 
@@ -126,9 +123,12 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>ลำดับ</th>
+                        <!-- <th>ลำดับ</th> -->
                         <th>ชื่อพนักงาน</th>
-                        <th>ทักษะ</th>
+                        <th>ชื่อลูกค้า</th>
+                        <th>วันเวลาที่จอง</th>
+                        <th>บริการที่เลือก</th>
+
                         <!-- <th>ระยะเวลาทำ</th> -->
                         <!-- <th>แก้ไข</th>
                         <th>ลบ</th> -->
@@ -140,14 +140,13 @@
                 <?php foreach ($read as $value) { ?>
                     <tbody>
                         <tr>
-
-                            <td><?php echo $value->id_skill ?></td>
+<!-- 
                             <td><?php echo $value->name_employee ?></td>
-                            <td><?php echo $value->name_skill ?></td>
-                            <!-- <td><?php echo $value->time ?></td> -->
-                            <!-- <td><?php echo $value->phone ?></td> -->
+                            <td><?php echo $value->name_cus ?></td>
+                            <td><?php echo $value->time ?></td>
+                             -->
                            
-                            <td><button type="button"  data-href="<?php echo $value->id_skill ?>" id="delete" data-toggle="modal" ">ลบ</button>
+                            <!-- <td><button type="button"  data-href="<?php echo $value->id_skill ?>" id="delete" data-toggle="modal" ">ลบ</button> -->
     
                             </td>
                         </tr>

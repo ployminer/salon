@@ -24,35 +24,45 @@
                                                                                     <form action="<?php echo base_url('regis_shop/create')?>" method="POST" class="register-form" id="register-form"> 
                                                                                                   <div class="form-group">
                                                                                                                 <label for="name"><i class="zmdi zmdi-store"></i></label>
-                                                                                                                <input type="text" name="name_shop" id="name_shop" placeholder="ชื่อร้าน" />
+                                                                                                                <input type="text" name="name_shop" id="name_shop" required placeholder="ชื่อร้าน" />
                                                                                                   </div>
                                                                                                   <div class="form-group">
                                                                                                                 <label for="name"><i class="zmdi zmdi-home"></i></label>
-                                                                                                                <input type="text" name="add_shop" id="add_shop" placeholder="ที่อยู่ร้าน" />
+                                                                                                                <input type="text" name="add_shop" id="add_shop" required placeholder="ที่อยู่ร้าน" />
                                                                                                   </div>
                                                                                                   <div class="form-group">
                                                                                                                 <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                                                                                                <input type="text" name="name_shopowner" id="name_shopowner" placeholder="ชื่อเจ้าของร้าน" />
+                                                                                                                <input type="text" name="name_shopowner" id="name_shopowner"required placeholder="ชื่อเจ้าของร้าน" />
                                                                                                   </div>
                                                                                                   <div class="form-group">
                                                                                                                 <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                                                                                                <input type="email" name="email_shopowner" id="email_shopowner" placeholder="อีเมล" />
+                                                                                                                <input type="email" name="email_shopowner" id="email_shopowner" required placeholder="อีเมล" />
                                                                                                   </div>
                                                                                                   <div class="form-group">
                                                                                                                 <label for="tel"><i class="zmdi zmdi-phone"></i></label>
-                                                                                                                <input type="tel" name="phone_shopowner" id="phone_shopowner" placeholder="เบอร์โทรศัพท์" />
+                                                                                                                <input type="tel" name="phone_shopowner" id="phone_shopowner"required placeholder="เบอร์โทรศัพท์" />
                                                                                                   </div>
                                                                                                   <div class="form-group">
                                                                                                                 <label for="re-pass"><i class="zmdi zmdi-book"></i></label>
-                                                                                                                <input type="tel" name="bookbank" id="bookbank" placeholder="เลขที่บัญชี" />
+                                                                                                                <input type="tel" name="bookbank" id="bookbank"required placeholder="เลขที่บัญชี" />
                                                                                                   </div>
-                                                                                                  
+                                                                                                  <div class="form-group">
+                                                                                                                <label for="re-pass"><i class="zmdi zmdi-book"></i></label>
+                                                                                                                <input type="password" name="pass" id="pass"required placeholder="รหัสผ่าน" />
+                                                                                                  </div>                                                                        
                                                                                                   <div class="form-group form-button">
                                                                                                                 <input type="submit" name="signup" id="signup" class="form-submit" value="ยืนยัน" />
                                                                                                   </div>
+
+                                                                                                  <!-- <div class="form-group form-button">
+                                                                                                                <input type="file" >
+                                                                                                  </div> -->
+                                                                                    
+                                                                                                 
                                                                                                   <input type="hidden" id="user_id" name="user_id" value=""> 
                                                                                                   
                                                                                     </form>
+                                                                                    
                                                                       </div>
                                                                       <div class="signup-image">
                                                                                     <figure><img src="<?php echo base_url('assets/bgregis/images/signin-image.jpg" alt="sing up image') ?>"></figure>
@@ -78,6 +88,7 @@
                             gtag('config', 'UA-23581568-13');
               </script>
               <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="2461647d3517a285fc713fb7-|49" defer=""></script>
+              
 </body>
 
 </html>
