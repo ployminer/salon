@@ -69,7 +69,9 @@
                 <img src="<?php echo base_url('assets/home/img/beauty-salon.png')?>" class="w3-circle w3-margin-right" style="width:46px">
             </div>
             <div class="w3-col s8 w3-bar">
-                <h3>"ชื่อร้านนั้นๆ"</h3>
+            <?php foreach ($read as $value) {?>
+                <h3><?php echo $value->name_shop?></h3>
+                <?php } ?>
                 <!-- <span>ยินดีต้อนรับ</span><br>
                 <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
                 <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
@@ -81,11 +83,12 @@
             <h5>Dashboard</h5>
         </div>
         <div class="w3-bar-block">
-            <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>&nbsp; ปิดเมนู</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu">
+                <i class="fa fa-remove fa-fw"></i>&nbsp; ปิดเมนู</a>
             <a href="back" class="w3-bar-item w3-button w3-padding"><i class="fa fa-home fa-fw"></i>&nbsp; หน้าแรก</a>
-            <a href="tb_time" class="w3-bar-item w3-button w3-padding "><i class="fa fa-users fa-fw"></i>&nbsp; ตารางเวลา</a>
+            <a href="dataservice" class="w3-bar-item w3-button w3-padding "><i class="fa fa-users fa-fw"></i>&nbsp; ข้อมูลบริการ</a>
             <a href="datahair" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>&nbsp; ข้อมูลช่างทำผม</a>
-            <a href="dataservice" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>&nbsp; ข้อมูลบริการ</a>
+            <a href="tb_time" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>&nbsp; ตารางเวลา</a>
             <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>&nbsp; Geo</a>
             <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>&nbsp; Orders</a>
             <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>&nbsp; News</a>
@@ -123,41 +126,6 @@
             <h1>ยินดีต้อนรับ</h1>
             <p>The w3-animate-top class slides in an element from the top.</p>
         </div>
-        <!-- <br>
-        <div style="overflow-x:auto;">
-            <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>ลำดับ</th>
-                        <th>ชื่อลูกค้า</th>
-                        <th>อีเมล์</th>
-                        <th>เบอร์โทร</th>
-                        <th>แก้ไข</th>
-                        <th>ลบ</th>
-                    </tr>
-
-
-                </thead>
-
-                <?php foreach ($read as $value) { ?>
-                    <tbody>
-                        <tr>
-
-                            <td><?php echo $value->id_customer ?></td>
-                            <td><?php echo $value->name_cus ?></td>
-                            <td><?php echo $value->email ?></td>
-                            <td><?php echo $value->phone ?></td>
-                           
-                           
-                            </td>
-                        </tr>
-                    </tbody>
-                <?php } ?>
-            </table>
-        </div>
-    </br> -->
-
-        <!-- End page content -->
     </div>
 
 

@@ -20,6 +20,7 @@
       <form  name="addproduct" action="<?php echo base_url('dataservice/update/' .$con->id_service) ?>" method="post" enctype="multipart/form-data"  class="form-horizontal">
         <div class="form-group">
           <div class="col-sm-12">
+            <input type="hidden" id="email_shopowner" name="email_shopowner">
             <p> ชื่อบริการ</p>
             <input type="text"  name="servicename" id="servicename" class="form-control" required placeholder="ชื่อบริการ" value="<?php echo $con->servicename?>" >
           </div>

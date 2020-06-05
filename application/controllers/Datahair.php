@@ -16,9 +16,10 @@ class Datahair extends CI_Controller{
        
     }
     public function index(){
-
-        $data['select'] = $this->datahairmodel->select_service();
-
+        $email_shopowner = $this->session->userdata('email_shopowner');
+        $data['read_shop'] = $this->datahairmodel->read_register_shop($email_shopowner);
+        $email_shopowner = $this->session->userdata('email_shopowner');
+        $data['select'] = $this->datahairmodel->select_service($email_shopowner);
         $data['read'] = $this->datahairmodel->read_datahair();
         $this->load->view('datahair',$data); 
         
@@ -39,12 +40,12 @@ class Datahair extends CI_Controller{
         $name_employee = $this->input->post('name_employee');
 
         if (!empty($name_employee)) {
-            $name_skill = $this->input->post('name_skill');
+            $name_skill = $this->input->post('servicename');
             
 
         $savedata = array(
             'name_employee' => $name_employee,
-            'name_skill' => $name_skill,
+            'servicename' => $servicename,
             'delete' => 1 
         );
         $result = $this->datahairmodel->create_add($savedata);
@@ -63,13 +64,13 @@ public function update($id_skill){
 
     if (!empty($name_employee)) {
         $name_employee = $this->input->post('name_employee');
-        $name_skill = $this->input->post('name_skill');
+        $servicename = $this->input->post('servicename');
        
 
         $savedata = array(
             'id_skill' => $id_skill,
             'name_employee' => $name_employee,
-            'name_skill' => $name_skill,
+            'servicename' => $servicename,
 
         );
 

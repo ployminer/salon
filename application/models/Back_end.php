@@ -9,10 +9,17 @@ class Back_end extends CI_Model{
         $this->load->database();
     }
 
-    public function read_register_shop()
+    public function read_register_shop($email_shopowner)
     {
-        $this->db->select('id_shop,name_shop,')->from('register_shop');
+        $where = array(
+            'email_shopowner' => $email_shopowner,
+        );
+        $this->db->select('name_shop');
+        $this->db->from('register_shop');
+        $this->db->where($where);
         $query = $this->db->get();
+        // print_r($query->result());
+        // exit;
         return $query->result();
     }
 }

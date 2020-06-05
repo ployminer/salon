@@ -19,7 +19,7 @@ class Datahairmodel extends CI_Model{
         $where = array(
             'delete' => 1
         );
-        $this->db->select('id_skill,name_employee,name_skill')->from('skilltype')->where($where);
+        $this->db->select('id_skill,name_employee,servicename')->from('skilltype')->where($where);
         $query = $this->db->get();
         return $query->result();
     }
@@ -39,7 +39,7 @@ class Datahairmodel extends CI_Model{
         $data = array(
             'id_skill'=> $savedata['id_skill'],
             'name_employee' => $savedata['name_employee'],
-            'name_skill' => $savedata['name_skill'],
+            'servicename' => $savedata['servicename'],
             'delete' => $savedata['delete'],
         );
         
@@ -47,13 +47,13 @@ class Datahairmodel extends CI_Model{
         $this->db->insert('skilltype', $data);
         return $this->db->insert_id();
 
-        $data = array(
-            'id_service'=>$savedata['id_service'],
-            'servicename'=>$savedata['servicename'],
-        );
+        // $data = array(
+        //     'id_service'=>$savedata['id_service'],
+        //     'servicename'=>$savedata['servicename'],
+        // );
 
-        $this->db->insert('servicetype',$data);
-        return $this->db->insert_id();
+        // $this->db->insert('servicetype',$data);
+        // return $this->db->insert_id();
       
     }
 
@@ -63,7 +63,7 @@ class Datahairmodel extends CI_Model{
         $data = array(
             'id_skill' => $savedata['id_skill'],
             'name_employee' => $savedata['name_employee'],
-            'name_skill' => $savedata['name_skill'],
+            'servicename' => $savedata['servicename'],
             
 
         );
@@ -73,15 +73,32 @@ class Datahairmodel extends CI_Model{
         
     }
 
-    public function select_service(){
-        // $where = array(
-        //     'email_shopowner' => $email_shopowner
-        // );
+    public function select_service($email_shopowner){
+       
+        $where = array(
+            'email_shopowner' => $email_shopowner
+        );
 
-        $this->db->select('servicename')->from('servicetype');
+        $this->db->select('servicename,email_shopowner')->from('servicetype')->where($where);
         $query = $this->db->get();
+        // print_r($query->result());
+        // exit;
         return $query->result();
 
+    }
+
+    public function read_register_shop($email_shopowner)
+    {
+        $where = array(
+            'email_shopowner' => $email_shopowner,
+        );
+        $this->db->select('name_shop');
+        $this->db->from('register_shop');
+        $this->db->where($where);
+        $query = $this->db->get();
+        // print_r($query->result());
+        // exit;
+        return $query->result();
     }
 
     
