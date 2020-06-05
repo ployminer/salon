@@ -110,6 +110,8 @@
         <header class="w3-container" style="padding-top:22px">
             <div class="w3-row">
             <div class="w3-col" style="width:75%">
+                     <p>
+                    </p>
                 </div>
                 <!-- <div class="w3-col" style="width:25%">
                     <p><a href="" class="btn btn-default pull-right">
