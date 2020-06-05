@@ -175,30 +175,14 @@ if(!is_null($events)){
                                     'line://app/1653826307-OBy8ydJM' // ข้อความแสดงในปุ่ม
                             ),
                             );
-                            ///////////////////////////////////////////////////////////////////////////////////////////////////
-                            //     $actionBuilder1 = array(
-                            //                                        new UriTemplateActionBuilder(
-                            //                                                'Facebook', // ข้อความแสดงในปุ่ม
-                            //                                                'https://www.facebook.com/parin.zaa.39'
-                            //                                        ),
-                            //                                         new UriTemplateActionBuilder(
-                            //                                                 'สมัครสมาชิก', // ข้อความแสดงในปุ่ม
-                            //                                                 'line://app/1653826307-Kakok2GR' // ข้อความแสดงในปุ่ม
-                            //                                         ),
-                            // );
-                            ///////////////////////////////////////////////////////////////////////////////////////////////////
+                            
                             $replyData = new TemplateMessageBuilder('Carousel', new CarouselTemplateBuilder(
                                     array(
                                 new CarouselColumnTemplateBuilder(
                                     'ลงทะเบียน', 'กรุณาลงทะเบียน', 'https://image.freepik.com/free-photo/top-view-uncompleted-questionnaire_23-2148265544.jpg', $actionBuilder
                                     
                                 ),
-                            ///////////////////////////////////////////////////////////////////////////////////////////////////
-                                // new CarouselColumnTemplateBuilder(
-                                //     'ลงทะเบียนลูกค้า', 'กรุณาลงทะเบียน', 'https://img.freepik.com/free-vector/online-registration-concept-with-isometric-view_23-2147976707.jpg?size=338&ext=jpg', $actionBuilder1
-                                  
-                                // ),
-                            /////////////////////////////////////////////////////////////////////////////////////////////////////
+                            
                                     )
                                     )
                             );

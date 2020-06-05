@@ -274,7 +274,7 @@ figure {
 
 .form-submit {
   display: inline-block;
-  background: #6dabe4;
+  /* background: #6dabe4; */
   color: #fff;
   border-bottom: none;
   width: auto;
@@ -563,7 +563,8 @@ label.valid {
     -ms-justify-content: center; }
 
   .form-button {
-    text-align: center; }
+    text-align: center;
+   }
 
   .signin-form {
     order: 1;
