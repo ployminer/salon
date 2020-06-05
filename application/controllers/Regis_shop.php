@@ -21,55 +21,55 @@ class Regis_shop extends CI_Controller{
         $bookbank = $this->input->post('bookbank');
         $pass = $this->input->post('pass');
 
-        if (empty($name_shop)) {
-            $http_status = 400;
-            $response = array('message' => 'ระบุ ชื่อร้าน');
-        } else if (empty($name_shopowner)) {
-            $http_status = 400;
-            $response = array('message' => 'ระบุ ชื่อเจ้าของร้าน');
-        } else if (empty($email_shopowner)) {
-            $http_status = 400;
-            $response = array('message' => 'ระบุ อีเมล์');
-        } else if (empty($phone_shopowner)) {
-            $http_status = 400;
-            $response = array('message' => 'ระบุ เบอร์โทรศัพท์');
-        } else if (empty($bookbank)) {
-            $http_status = 400;
-            $response = array('message' => 'ระบุ เลขบัญชี');
-        } else if (empty($pass)) {
-            $http_status = 400;
-            $response = array('message' => 'ระบุ รหัสผ่าน');
-        } else {
-            $this->load->model('register_shop');
-            $member = $this->register_shop->read_member($name_shop,$name_shopowner,$email_shopowner,$phone_shopowner,$bookbank,$pass);
+        // if (empty($name_shop)) {
+        //     $http_status = 400;
+        //     $response = array('message' => 'ระบุ ชื่อร้าน');
+        // } else if (empty($name_shopowner)) {
+        //     $http_status = 400;
+        //     $response = array('message' => 'ระบุ ชื่อเจ้าของร้าน');
+        // } else if (empty($email_shopowner)) {
+        //     $http_status = 400;
+        //     $response = array('message' => 'ระบุ อีเมล์');
+        // } else if (empty($phone_shopowner)) {
+        //     $http_status = 400;
+        //     $response = array('message' => 'ระบุ เบอร์โทรศัพท์');
+        // } else if (empty($bookbank)) {
+        //     $http_status = 400;
+        //     $response = array('message' => 'ระบุ เลขบัญชี');
+        // } else if (empty($pass)) {
+        //     $http_status = 400;
+        //     $response = array('message' => 'ระบุ รหัสผ่าน');
+        // } else {
+        //     $this->load->model('register_shop');
+        //     $member = $this->register_shop->read_member($name_shop,$name_shopowner,$email_shopowner,$phone_shopowner,$bookbank,$pass);
             
   
-            if (!empty($member)) {
-                $http_status = 200;
-                $response = array('message' => 'successfully');
+        //     if (!empty($member)) {
+        //         $http_status = 200;
+        //         $response = array('message' => 'successfully');
                 
-                $this->load->library('session');
-                $this->session->set_userdata('email_shopowner', $member[0]->email_shopowner);
+        //         $this->load->library('session');
+        //         $this->session->set_userdata('email_shopowner', $member[0]->email_shopowner);
                 
-                redirect('loginshop');
+        //         redirect('loginshop');
                 
-            } else {
-               // $http_status = 400;
-               // $response = array('message' => 'email or password ไม่ถูกต้อง');
-               ?>
-               <script type="text/javascript">
-               alert("ข้อมูลซ้ำ");
-               location.href="index";
-               </script>
-               <?php
-            }
-        }
-        $this->output
-                ->set_status_header($http_status)
-                ->set_content_type('application/json', 'utf-8')
-                ->set_output(json_encode($response))
-                ->_display();
-        ;
+        //     } else {
+        //        // $http_status = 400;
+        //        // $response = array('message' => 'email or password ไม่ถูกต้อง');
+        //        ?>
+        //        <script type="text/javascript">
+        //        alert("ข้อมูลซ้ำ");
+        //        location.href="index";
+        //        </script>
+        //        <?php
+        //     }
+        // }
+        // $this->output
+        //         ->set_status_header($http_status)
+        //         ->set_content_type('application/json', 'utf-8')
+        //         ->set_output(json_encode($response))
+        //         ->_display();
+        // ;
 
         $savedata = array(
             'user_id' => $user_id,
