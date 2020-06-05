@@ -75,7 +75,9 @@
                 <img src="<?php echo base_url('assets/home/img/beauty-salon.png') ?>" class="w3-circle w3-margin-right" style="width:46px">
             </div>
             <div class="w3-col s8 w3-bar">
-                <h3>"ชื่อร้านนั้นๆ"</h3>
+            <?php foreach ($read_shop as $value) {?>
+                <h3><?php echo $value->name_shop?></h3>
+                <?php } ?>  
                 <!-- <span>"ชื่อร้านนั้นๆ"</span> -->
                 <!-- <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
                 <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
@@ -91,9 +93,9 @@
             <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu">
                 <i class="fa fa-remove fa-fw"></i>&nbsp; ปิดเมนู</a>
             <a href="back" class="w3-bar-item w3-button w3-padding"><i class="fa fa-home fa-fw"></i>&nbsp; หน้าแรก</a>
-            <a href="tb_time" class="w3-bar-item w3-button w3-padding "><i class="fa fa-users fa-fw"></i>&nbsp; ตารางเวลา</a>
+            <a href="dataservice" class="w3-bar-item w3-button w3-padding "><i class="fa fa-users fa-fw"></i>&nbsp; ข้อมูลบริการ</a>
             <a href="datahair" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>&nbsp; ข้อมูลช่างทำผม</a>
-            <a href="dataservice" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>&nbsp; ข้อมูลบริการ</a>
+            <a href="tb_time" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>&nbsp; ตารางเวลา</a>
             <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>&nbsp; Geo</a>
             <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>&nbsp; Orders</a>
             <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>&nbsp; News</a>
@@ -148,7 +150,7 @@
             <select class="form-control" name="select" id="select" required>
             <option >เลือกทักษะ</option>
             <?php foreach ($select as $value) {?>
-            <option value='<?php echo $value->servicename?>'></option>
+            <option value='<?php echo $value->email_shopowner?>'><?php echo $value->servicename?></option>
             <?php } ?>
             </select>
           </div>
@@ -188,7 +190,7 @@
                         <tr>
                             <!-- <td><?php echo $value->id_skill ?></td> -->
                             <td><?php echo $value->name_employee ?></td>
-                            <td><?php echo $value->name_skill ?></td>
+                            <td><?php echo $value->servicename ?></td>
                             
 
 

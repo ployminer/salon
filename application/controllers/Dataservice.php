@@ -16,8 +16,11 @@ class Dataservice extends CI_Controller{
        
     }
     public function index(){
-       
-        $data['read'] = $this->dataservicemodel->read_dataservice();
+        $email_shopowner = $this->session->userdata('email_shopowner');
+        // print_r($email_shopowner);
+        // exit;
+        $data['read_shop'] = $this->dataservicemodel->read_register_shop($email_shopowner);
+        $data['read'] = $this->dataservicemodel->read_dataservice($email_shopowner);
         $this->load->view('dataservice',$data); 
     }
     // public function read_servicetype(){
@@ -51,6 +54,8 @@ class Dataservice extends CI_Controller{
         $data['con']->servicename = '';
         $data['con']->priceservice = '';
         $data['con']->time = '';
+        $email_shopowner = $this->session->userdata('email_shopowner');
+
 
         $servicename = $this->input->post('servicename');
 
@@ -63,7 +68,8 @@ class Dataservice extends CI_Controller{
             'servicename' => $servicename,
             'priceservice' => $priceservice,
             'time' => $time,
-            'delete' => 1 
+            'delete' => 1 ,
+            'email_shopowner' => $email_shopowner
         );
             $result = $this->dataservicemodel->create_add($savedata);
         redirect('dataservice');
@@ -76,18 +82,22 @@ class Dataservice extends CI_Controller{
 
         $data['title'] = 'แก้ไขข้อมูล';
         $data['con'] = $this->dataservicemodel->read_id($id_service);
+        $email_shopowner = $this->session->userdata('email_shopowner');
         $servicename = $this->input->post('servicename');
 
         if (!empty($servicename)) {
             $servicename = $this->input->post('servicename');
             $priceservice = $this->input->post('priceservice');
             $time = $this->input->post('time');
+            
 
             $savedata = array(
                 'id_service' => $id_service,
                 'servicename' => $servicename,
                 'priceservice' => $priceservice,
-                'time' => $time
+                'time' => $time,
+                'email_shopowner' => $email_shopowner
+
 
             );
 

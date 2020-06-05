@@ -16,7 +16,8 @@ class Back extends CI_Controller{
        
     }
     public function index(){
-        $data['read'] = $this->back_end->read_register_shop();
+        $email_shopowner = $this->session->userdata('email_shopowner');
+        $data['read'] = $this->back_end->read_register_shop($email_shopowner);
         $this->load->view('back',$data); 
     }
 }

@@ -19,16 +19,18 @@ class Dataservicemodel extends CI_Model{
         return $query->row();
     }
 
-    public function read_dataservice()
+    public function read_dataservice($email_shopowner)
     {
         $where = array(
-            'delete' => 1
+            'delete' => 1 , 'email_shopowner' => $email_shopowner
+
         );
         $this->db->select('id_service,servicename,priceservice,time')->from('servicetype')->where($where);
         $query = $this->db->get();
 
         return $query->result();
     }
+    
     public function read_id($id_service)
     {
         $where = array(
@@ -40,14 +42,32 @@ class Dataservicemodel extends CI_Model{
         return $query->row();
     }
 
+    public function read_register_shop($email_shopowner)
+    {
+        $where = array(
+            'email_shopowner' => $email_shopowner
+        );
+        $this->db->select('name_shop');
+        $this->db->from('register_shop');
+        $this->db->where($where);
+        $query = $this->db->get();
+        // print_r($query->result());
+        // exit;
+        return $query->result();
+    }
+
     
-    public function create_add($savedata) {
+    public function create_add($savedata){
+
+
         $data = array(
             'id_service'=> $savedata['id_service'],
             'servicename' => $savedata['servicename'],
             'priceservice' => $savedata['priceservice'],
             'time' => $savedata['time'],
             'delete' => $savedata['delete'],
+            'email_shopowner' => $savedata['email_shopowner']
+            
         );
         
         $this->db->insert('servicetype', $data);
@@ -63,6 +83,8 @@ class Dataservicemodel extends CI_Model{
             'servicename' => $savedata['servicename'],
             'priceservice' => $savedata['priceservice'],
             'time' => $savedata['time'],
+            'email_shopowner' => $savedata['email_shopowner']
+
             
         );
         $this->db->where('id_service', $savedata['id_service']);

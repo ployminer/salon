@@ -16,11 +16,13 @@ class Tb_time extends CI_Controller{
        
     }
     public function index(){
+        $email_shopowner = $this->session->userdata('email_shopowner');
+        $data['read_shop'] = $this->tbtime->read_register_shop($email_shopowner);
         $data['read'] = $this->tbtime->read_register_cus();
         $this->load->view('tb_time',$data); 
     }
     public function read_skilltype(){
-        $this->db->select('id_skill,name_employee,name_skill')->from('skilltype');
+        $this->db->select('id_skill,name_employee,servicename')->from('skilltype');
         $query = $this->db->get();
         return $query->result();
     }
