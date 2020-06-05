@@ -1,103 +1,105 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <style>
+                            body {
+                                          font-family: Arial, Helvetica, sans-serif;
+                            }
 
-<title>Make your reservation</title>
+                            * {
+                                          box-sizing: border-box;
+                            }
 
-<link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
+                            input[type=text],
+                            select,
+                            textarea {
+                                          width: 100%;
+                                          padding: 12px;
+                                          border: 1px solid #ccc;
+                                          border-radius: 4px;
+                                          box-sizing: border-box;
+                                          margin-top: 6px;
+                                          margin-bottom: 16px;
+                                          resize: vertical;
+                            }
 
-<link type="text/css" rel="stylesheet" href="<?php echo base_url('assets/colorlib-booking-12/css/bootstrap.min.css')?>">
+                            input[type=submit] {
+                                          background-color: #4CAF50;
+                                          color: white;
+                                          padding: 12px 20px;
+                                          border: none;
+                                          border-radius: 4px;
+                                          cursor: pointer;
+                            }
 
-<link type="text/css" rel="stylesheet" href="<?php echo base_url('assets/colorlib-booking-12/css/style.css')?>">
+                            input[type=submit]:hover {
+                                          background-color: #45a049;
+                            }
 
-
-<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
+                            .container {
+                                          border-radius: 5px;
+                                          background-color: #f2f2f2;
+                                          padding: 20px;
+                            }
+              </style>
 </head>
+
 <body>
-<div id="booking" class="section">
-<div class="section-center">
-<div class="container">
-<div class="row">
-<div class="booking-form">
-<div class="booking-bg"></div>
-<form>
-<div class="form-header">
-<h2>จองบริการทำผม</h2>
-</div>
-<div class="form-group">
-<span class="form-label">ชื่อลูกค้า</span>
-<input class="form-control" type="text" placeholder="">
-</div>
-<div class="row">
-<div class="col-md-6">
-<div class="form-group">
-<span class="form-label">วันที่</span>
-<input class="form-control" type="date" required>
-</div>
-</div>
-<div class="col-md-6">
-<div class="form-group">
-<span class="form-label">เวลา</span>
-<input class="form-control" type="time" required>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="col-md-6">
-<div class="form-group">
-<span class="form-label" >บริการ</span>
-<select class="form-control">
-<option  value="" selected hidden></option>
-<option>สระผม</option>
-<option>ตัดผม</option>
-<option>ไดร์ผม</option>
-<option>ทำสีผม</option>
-<option>อบไอน้ำ</option>
-</select>
-<span class="select-arrow"></span>
-</div>
-</div>
-<div class="col-md-6">
-<div class="form-group">
-<span class="form-label">ช่างทำผม</span>
-<select class="form-control">
-<option value="" selected hidden></option>
-<option>1</option>
-<option>2</option>
-</select>
-<span class="select-arrow"></span>
-</div>
-</div>
-</div>
 
-<div class="form-group">
-<span class="form-label">โทรศัพท์</span>
-<input class="form-control" type="tel" placeholder="">
-</div>
-<div class="form-btn">
-<button class="submit-btn">ยืนยันการจอง</button>
-</div>
-</form>
-</div>
-</div>
-</div>
-</div>
-</div>
+              
+              <h3 >จองบริการทำผม</h3>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13" type="95745481af24249b34f31f57-text/javascript"></script>
-<script type="95745481af24249b34f31f57-text/javascript">
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+              <div class="container">
+                            <form action="/action_page.php">
+                                          <label for="fname">ชื่อลูกค้า</label>
+                                          <input type="text" id="fname" name="firstname">
 
-  gtag('config', 'UA-23581568-13');
-</script>
-<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="95745481af24249b34f31f57-|49" defer=""></script></body>
+                                          <label for="country" type="date">ร้านบริการ</label>
+                                          <select name="date" id="date" type="date" class="form-control required">
+                                                        <option selected="" disabled="">เลือกร้านบริการ</option>
+                                                        <?php foreach ($read_shop as $value) { ?>
+                                                                      <option value='<?php echo $value->email_shopowner ?>'><?php echo $value->name_shop ?></option>
+                                                        <?php } ?>
+                                          </select>
+
+                                          <label for="country" type="date">จองวัน</label>
+                                          <select name="date" id="date" type="date" class="form-control required">
+                                                        <option selected="" disabled="">วัน</option>
+                                                        <?php foreach ($read as $value) { ?>
+                                                                      <option value='<?php echo $value->id_service ?>'><?php echo $value->date ?></option>
+                                                        <?php } ?>
+                                          </select>
+
+                                          <label for="country" type="date">จองเวลา</label>
+                                          <select name="date" id="date" class="form-control required">
+                                                        <option selected="" disabled="">เวลา</option>
+                                                        <?php foreach ($date as $value) { ?>
+                                                                      <option value='<?php echo $value->id_date ?>'><?php echo $value->date_date ?></option>
+                                                        <?php } ?>
+                                          </select>
+
+                                          <label for="country" type="date">จองบริการ</label>
+                                          <select name="date" id="date" class="form-control required">
+                                                        <option>บริการ</option>
+                                                        <?php foreach ($service as $value) { ?>
+                                                                      <option value='<?php echo $value->id_service ?>'><?php echo $value->servicename ?></option>
+                                                        <?php } ?>
+                                          </select>
+
+                                          <label for="country" type="date">จองช่างทำผม</label>
+                                          <select name="date" id="date" class="form-control required">
+                                                        <option selected="" disabled="">ช่าง</option>
+                                                        <?php foreach ($date as $value) { ?>
+                                                                      <option value='<?php echo $value->id_date ?>'><?php echo $value->date_date ?></option>
+                                                        <?php } ?>
+                                          </select>
+
+                                          <input type="submit" value="Submit">
+                            </form>
+              </div>
+
+</body>
+
 </html>
