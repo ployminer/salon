@@ -150,7 +150,7 @@
             <select class="form-control" name="select" id="select" required>
             <option >เลือกทักษะ</option>
             <?php foreach ($select as $value) {?>
-            <option value='<?php echo $value->email_shopowner?>'><?php echo $value->servicename?></option>
+            <option value='<?php echo $value->servicename?>'><?php echo $value->servicename?></option>
             <?php } ?>
             </select>
           </div>

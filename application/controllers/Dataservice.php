@@ -6,7 +6,7 @@ class Dataservice extends CI_Controller{
         parent::__construct();
         $this->load->helper('url');
         $this->load->model('dataservicemodel');
-        $this->load->model('register_shop');
+        // $this->load->model('register_shop');
         $this->load->library('session');
         $this->load->library('form_validation');
         $email_shopowner = $this->session->userdata('email_shopowner');
