@@ -74,6 +74,20 @@ class Datahairmodel extends CI_Model{
 
     }
 
+    public function select($email_shopowner){
+       
+        $where = array(
+            'email_shopowner' => $email_shopowner
+        );
+
+        $this->db->select('servicename,email_shopowner')->from('servicetype')->where($where);
+        $query = $this->db->get();
+        // print_r($query->result());
+        // exit;
+        return $query->result();
+
+    }
+
     public function read_register_shop($email_shopowner)
     {
         $where = array(

@@ -21,6 +21,8 @@ class Datahair extends CI_Controller{
         $email_shopowner = $this->session->userdata('email_shopowner');
         $data['select'] = $this->datahairmodel->select_service($email_shopowner);
         $data['read'] = $this->datahairmodel->read_datahair($email_shopowner);
+        $email_shopowner = $this->session->userdata('email_shopowner');
+        $data['skill'] = $this->datahairmodel->select($email_shopowner);
         $this->load->view('datahair',$data); 
         
     }
@@ -61,6 +63,7 @@ public function update($id_skill){
     $data['con'] = $this->datahairmodel->read_id($id_skill);
     $name_employee = $this->input->post('name_employee');
     $email_shopowner = $this->session->userdata('email_shopowner');
+    $servicename = $this->input->post('skill');
 
 
     if (!empty($name_employee)) {

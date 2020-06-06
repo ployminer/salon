@@ -17,12 +17,9 @@ class Reserve extends CI_Controller{
     }
 }
     public function index(){
-        // $data['read'] = $this->service->read_service();
-        $email_shopowner = $this->session->userdata('$email_shopowner');
-        $data['read_shop'] = $this->service->read_service($email_shopowner);
-        // print_r($data['read_shop']);
+        $data['shop'] = $this->service->read_shop();
+        // print_r( $data['shop']);
         // exit;
-        // $data['read_shop'] = $this->service->read_shop();
         $this->load->view('reserve');
     }
     public function create() {

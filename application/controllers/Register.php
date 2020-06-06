@@ -27,7 +27,7 @@ class Register extends CI_Controller{
 //        print_r($savedata);
 //        echo '</pre>';
         $result = $this->register_cus->create_register($savedata);
-        redirect('service');
+        redirect('reserve');
     }
      
 }

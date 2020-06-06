@@ -56,10 +56,10 @@
                                           <label for="fname">ชื่อลูกค้า</label>
                                           <input type="text" id="fname" name="firstname">
 
-                                          <label for="country" type="date">ร้านบริการ</label>
-                                          <select name="date" id="date" type="date" class="form-control required">
+                                          <label for="country">ร้านบริการ</label>
+                                          <select name="shop" id="shop"  class="form-control required">
                                                         <option selected="" disabled="">เลือกร้านบริการ</option>
-                                                        <?php foreach ($read_shop as $value) { ?>
+                                                        <?php foreach ($shop as $value) { ?>
                                                                       <option value='<?php echo $value->email_shopowner ?>'><?php echo $value->name_shop ?></option>
                                                         <?php } ?>
                                           </select>
