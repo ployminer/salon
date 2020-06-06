@@ -18,10 +18,19 @@ class Datahair extends CI_Controller{
     public function index(){
         $email_shopowner = $this->session->userdata('email_shopowner');
         $data['read_shop'] = $this->datahairmodel->read_register_shop($email_shopowner);
+
         $email_shopowner = $this->session->userdata('email_shopowner');
         $data['select'] = $this->datahairmodel->select_service($email_shopowner);
+
         $email_shopowner = $this->session->userdata('email_shopowner');
         $data['read'] = $this->datahairmodel->read_datahair($email_shopowner);
+
+
+        $data['read'] = $this->datahairmodel->read_datahair($email_shopowner);
+
+        $email_shopowner = $this->session->userdata('email_shopowner');
+        $data['update_select'] = $this->datahairmodel->update_service($email_shopowner);
+
         $this->load->view('datahair',$data); 
         
     }
@@ -38,15 +47,15 @@ class Datahair extends CI_Controller{
         $data['con']->servicename = '';
         $email_shopowner = $this->session->userdata('email_shopowner');
         
-
         $name_employee = $this->input->post('name_employee');
-        $servicename = $this->input->post('select');
+        $servicename = $this->input->post('servicename');
+
 
         $savedata = array(
             'name_employee' => $name_employee,
             'servicename' => $servicename,
             'delete' => 1 ,
-            'email_shopowner' => $email_shopowner
+            'email_shopowner' => $email_shopowner,
 
         );
         $result = $this->datahairmodel->create_add($savedata);
@@ -60,9 +69,13 @@ public function update($id_skill){
     $data['title'] = 'แก้ไขข้อมูล';
     $data['con'] = $this->datahairmodel->read_id($id_skill);
     $name_employee = $this->input->post('name_employee');
+
     $servicename = $this->input->post('servicename');
     $email_shopowner = $this->session->userdata('email_shopowner');
     $data['select'] = $this->datahairmodel->select_service($email_shopowner);
+
+    $email_shopowner = $this->session->userdata('email_shopowner');
+
 
 
     if (!empty($name_employee)) {
@@ -88,6 +101,10 @@ public function update($id_skill){
     $this->load->view('update2', $data);
     
 }
+
+
+
+
 
     public function delete($id_skill) {
             

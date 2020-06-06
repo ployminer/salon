@@ -27,11 +27,18 @@
         <div class="form-group">
           <div class="col-sm-12">
             <p> ทักษะ </p>
+<<<<<<< Updated upstream
             <!-- <input name="name_skill" id="name_skill"  class="form-control" type="int"   required placeholder="ทักษะ" value="<?php echo $con->name_skill?>"> -->
             <select class="form-control" name="select" id="select" required>
             <option >เลือกทักษะ</option>
             <?php foreach ($select as $value) {?>
             <option value='<?php echo $value->email_shopowner?>'><?php echo $value->servicename?></option>
+=======
+            <select class="form-control" name="select" id="select" required>
+            <option >เลือกทักษะ</option>
+            <?php foreach ($update_select as $value) {?>
+            <option value='<?php echo $value->servicename?>'><?php echo $value->servicename?></option>
+>>>>>>> Stashed changes
             <?php } ?>
             </select>
           </div>
