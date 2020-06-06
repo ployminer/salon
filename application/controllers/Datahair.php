@@ -20,7 +20,7 @@ class Datahair extends CI_Controller{
         $data['read_shop'] = $this->datahairmodel->read_register_shop($email_shopowner);
         $email_shopowner = $this->session->userdata('email_shopowner');
         $data['select'] = $this->datahairmodel->select_service($email_shopowner);
-        $data['read'] = $this->datahairmodel->read_datahair();
+        $data['read'] = $this->datahairmodel->read_datahair($email_shopowner);
         $this->load->view('datahair',$data); 
         
     }
@@ -34,24 +34,23 @@ class Datahair extends CI_Controller{
         $data['con']= new stdClass();
         $data['con']->id_skill = '';
         $data['con']->name_employee = '';
-        $data['con']->name_skill = '';
-        
+        $data['con']->servicename = '';
+        $email_shopowner = $this->session->userdata('email_shopowner');
 
         $name_employee = $this->input->post('name_employee');
-
-        if (!empty($name_employee)) {
-            $name_skill = $this->input->post('servicename');
-            
+        $servicename = $this->input->post('select');
+      
 
         $savedata = array(
             'name_employee' => $name_employee,
             'servicename' => $servicename,
-            'delete' => 1 
+            'delete' => 1 ,
+            'email_shopowner' => $email_shopowner,
         );
         $result = $this->datahairmodel->create_add($savedata);
         redirect('datahair');
        
-    }
+    
     $this->load->view('datahair',$data);
 }
 
@@ -61,6 +60,8 @@ public function update($id_skill){
     $data['title'] = 'แก้ไขข้อมูล';
     $data['con'] = $this->datahairmodel->read_id($id_skill);
     $name_employee = $this->input->post('name_employee');
+    $email_shopowner = $this->session->userdata('email_shopowner');
+
 
     if (!empty($name_employee)) {
         $name_employee = $this->input->post('name_employee');
@@ -71,6 +72,7 @@ public function update($id_skill){
             'id_skill' => $id_skill,
             'name_employee' => $name_employee,
             'servicename' => $servicename,
+            'email_shopowner' => $email_shopowner,
 
         );
 

@@ -28,9 +28,11 @@
           <div class="col-sm-12">
             <p> ทักษะ </p>
             <!-- <input name="name_skill" id="name_skill"  class="form-control" type="int"   required placeholder="ทักษะ" value="<?php echo $con->name_skill?>"> -->
-            <select class="form-control" name="" id="" required>
+            <select class="form-control" name="select" id="select" required>
             <option >เลือกทักษะ</option>
-            <option value=""></option>
+            <?php foreach ($select as $value) {?>
+            <option value='<?php echo $value->servicename?>'><?php echo $value->servicename?></option>
+            <?php } ?>
             </select>
           </div>
         </div>

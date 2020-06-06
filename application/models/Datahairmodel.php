@@ -9,15 +9,10 @@ class Datahairmodel extends CI_Model{
         $this->load->database();
     }
 
-    // public function read_register_cus(){
-    //     $this->db->select('name_employee,id_skill')->from('hairdressertype');
-    //     $query = $this->db->get();
-    //     return $query->result();
-    // }
-    public function read_datahair()
+    public function read_datahair($email_shopowner)
     {
         $where = array(
-            'delete' => 1
+            'delete' => 1 , 'email_shopowner' => $email_shopowner
         );
         $this->db->select('id_skill,name_employee,servicename')->from('skilltype')->where($where);
         $query = $this->db->get();
@@ -41,20 +36,12 @@ class Datahairmodel extends CI_Model{
             'name_employee' => $savedata['name_employee'],
             'servicename' => $savedata['servicename'],
             'delete' => $savedata['delete'],
+            'email_shopowner' => $savedata['email_shopowner']
         );
         
         
         $this->db->insert('skilltype', $data);
         return $this->db->insert_id();
-
-        // $data = array(
-        //     'id_service'=>$savedata['id_service'],
-        //     'servicename'=>$savedata['servicename'],
-        // );
-
-        // $this->db->insert('servicetype',$data);
-        // return $this->db->insert_id();
-      
     }
 
     public function update_skill($savedata)
@@ -64,7 +51,7 @@ class Datahairmodel extends CI_Model{
             'id_skill' => $savedata['id_skill'],
             'name_employee' => $savedata['name_employee'],
             'servicename' => $savedata['servicename'],
-            
+            'email_shopowner' => $savedata['email_shopowner']
 
         );
 
