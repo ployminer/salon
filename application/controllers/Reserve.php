@@ -6,7 +6,6 @@ class Reserve extends CI_Controller{
         parent::__construct();
         $this->load->helper('url');
         $this->load->model('service');
-        $this->load->model('register_shop');
         $this->load->library('session');
         $this->load->library('form_validation');
         $email_shopowner = $this->session->userdata('email_shopowner');
@@ -17,23 +16,50 @@ class Reserve extends CI_Controller{
     }
 }
     public function index(){
-        // $data['read'] = $this->service->read_service();
-        $email_shopowner = $this->session->userdata('$email_shopowner');
-        $data['read_shop'] = $this->service->read_service($email_shopowner);
-        // print_r($data['read_shop']);
-        // exit;
-        // $data['read_shop'] = $this->service->read_shop();
-        $this->load->view('reserve');
+        $data['read_shop'] = $this->service->read_shop();
+        $this->load->view('reserve',$data);
     }
+
+    public function ToObject($Array)
+    {
+        $object = new stdClass();
+        foreach ($Array as $key => $value) {
+            if (is_array($value)) {
+                $value = $this->ToObject($value);
+            }
+            $object->$key = $value;
+        }
+        return $object;
+    }
+        
+
+    public function service()
+    {
+        $email_shopowner = $this->input->post('email_shopowner', TRUE);
+        $data = $this->service->selectservice($email_shopowner);
+        echo json_encode($data);
+    }
+    public function hairdresser()
+    {
+        $id_service = $this->input->post('id_service', TRUE);
+        $data = $this->service->hairdresser($id_service);
+        echo json_encode($data);
+    }
+
     public function create() {
         $user_id = $this->input->post('user_id');
-        $name_cus = $this->input->post('name_cus');
-        $email = $this->input->post('email');
-        $phone = $this->input->post('phone');
-        $servicename = $this->input->post('servicename');
-        $date = $this->input->post('date');
+        $data1 = $this->service->read_name($user_id);
+        $resultObj = $this->ToObject($data);
+
        
-    
+        $service = $this->input->post('service');
+        $data = $this->service->read_service($service);
+        $resultObj = $this->ToObject($data);
+        foreach ($resultObj as $option) {
+            $nameoption = $option->servicename;
+            $price = $option->priceservice;
+        }
+
 
         $savedata = array(
             'user_id' => $user_id,
@@ -49,6 +75,13 @@ class Reserve extends CI_Controller{
 //        echo '</pre>';
         $result = $this->register_cus->create_register($savedata);
         redirect('service');
+    }
+
+    public function price()
+    {
+        $id_service = $this->input->post('id_service', TRUE);
+        $data = $this->service->read_price($id_service);
+        echo json_encode($data);
     }
      
 }

@@ -53,44 +53,45 @@
 
               <div class="container">
                             <form action="/action_page.php">
-                                          <label for="fname">ชื่อลูกค้า</label>
-                                          <input type="text" id="fname" name="firstname">
+                            
 
-                                          <label for="country" type="date">ร้านบริการ</label>
-                                          <select name="date" id="date" type="date" class="form-control required">
+                                          <label for="country">ร้านบริการ</label>
+                                          <select name="shop" id="shop"  class="form-control required">
                                                         <option selected="" disabled="">เลือกร้านบริการ</option>
                                                         <?php foreach ($read_shop as $value) { ?>
                                                                       <option value='<?php echo $value->email_shopowner ?>'><?php echo $value->name_shop ?></option>
                                                         <?php } ?>
                                           </select>
 
-                                          <label for="country" type="date">จองวัน</label>
-                                          <select name="date" id="date" type="date" class="form-control required">
-                                                        <option selected="" disabled="">วัน</option>
-                                                        <?php foreach ($read as $value) { ?>
-                                                                      <option value='<?php echo $value->id_service ?>'><?php echo $value->date ?></option>
-                                                        <?php } ?>
+                                          <label for="country" >จองบริการ</label>
+                                          <select name="service" id="service"  class="form-control required">
+                                                        <option selected="" disabled="">เลือกบริการ</option>
                                           </select>
 
-                                          <label for="country" type="date">จองเวลา</label>
-                                          <select name="date" id="date" class="form-control required">
-                                                        <option selected="" disabled="">เวลา</option>
+                                          <label for="country">ราคาบริการ</label>
+                                          <select name="price" id="price" class="form-control required">
+                                                        <option selected="" disabled="">ราคา</option>
+                                          </select>
+
+                                          <label for="country">จองช่างทำผม</label>
+                                          <select name="hair" id="hair" class="form-control required">
+                                                        <option >เลือกช่าง</option>
                                                         <?php foreach ($date as $value) { ?>
                                                                       <option value='<?php echo $value->id_date ?>'><?php echo $value->date_date ?></option>
                                                         <?php } ?>
                                           </select>
 
-                                          <label for="country" type="date">จองบริการ</label>
-                                          <select name="date" id="date" class="form-control required">
-                                                        <option>บริการ</option>
+                                          <label for="country" type="date">จองวัน</label>
+                                          <select name="" id="" class="form-control required">
+                                                        <option>เลือกวัน</option>
                                                         <?php foreach ($service as $value) { ?>
                                                                       <option value='<?php echo $value->id_service ?>'><?php echo $value->servicename ?></option>
                                                         <?php } ?>
                                           </select>
 
-                                          <label for="country" type="date">จองช่างทำผม</label>
-                                          <select name="date" id="date" class="form-control required">
-                                                        <option selected="" disabled="">ช่าง</option>
+                                          <label for="country" type="date">จองเวลา</label>
+                                          <select name="" id="" class="form-control required">
+                                                        <option selected="" disabled="">เลือกเวลา</option>
                                                         <?php foreach ($date as $value) { ?>
                                                                       <option value='<?php echo $value->id_date ?>'><?php echo $value->date_date ?></option>
                                                         <?php } ?>
@@ -101,5 +102,91 @@
               </div>
 
 </body>
-
+<script src="jquery-3.5.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        
+        $('#shop').change(function() {
+            var email_shopowner = $(this).val();
+            $.ajax({
+                url: "<?php echo site_url('reserve/service'); ?>",
+                method: "POST",
+                data: {
+                    email_shopowner: email_shopowner
+                },
+                async: true,
+                dataType: 'json',
+                success: function(data) {
+                    var html = '';
+                    var i;
+                    html = '<option  selected="" disabled="">ประเภทการล้าง</option>'
+                    p = '<option  selected="" disabled="">ราคา</option>'
+                    for (i = 0; i < data.length; i++) {
+                        html += '<option value=' + data[i].id_service + '>' + data[i].servicename + '</option>';
+                    }
+                    $('#service').html(html);
+                    $('#price').html(p);
+                }
+            });
+            $.ajax({
+                url: "<?php echo site_url('booking/fetch_date'); ?>",
+                method: "POST",
+                data: {
+                    email: email
+                },
+                async: true,
+                dataType: 'json',
+                success: function(data) {
+                    var html = '';
+                    var i;
+                    html = '<option selected="" disabled="">เวลา</option>'
+                    for (i = 0; i < data.length; i++) {
+                        html += '<option value=' + data[i].id_date + '>' + data[i].date_date + '</option>';
+                    }
+                    $('#date').html(html);
+                }
+            });
+            
+        });
+        $('#service').change(function() {
+            var id_service = $(this).val();
+            $.ajax({
+                url: "<?php echo site_url('reserve/price'); ?>",
+                method: "POST",
+                data: {
+                    id_service: id_service
+                },
+                async: true,
+                dataType: 'json',
+                success: function(data) {
+                    var html = '';
+                    var i;
+                    for (i = 0; i < data.length; i++) {
+                        html += '<option value=' + data[i].id_service + '>' + data[i].priceservice + ' บาท</option>';
+                    }
+                    $('#price').html(html);
+                }
+            });
+            $.ajax({
+                url: "<?php echo site_url('reserve/hairdresser'); ?>",
+                method: "POST",
+                data: {
+                    id_service: id_service
+                },
+                async: true,
+                dataType: 'json',
+                success: function(data) {
+                    var html = '';
+                    var i;
+                    for (i = 0; i < data.length; i++) {
+                        html += '<option value=' + data[i].id_skill + '>' + data[i].name_employee + '</option>';
+                    }
+                    $('#hair').html(html);
+                }
+            });
+            return false;
+        });
+    });
+</script>
 </html>
