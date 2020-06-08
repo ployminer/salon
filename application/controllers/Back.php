@@ -20,4 +20,13 @@ class Back extends CI_Controller{
         $data['read'] = $this->back_end->read_register_shop($email_shopowner);
         $this->load->view('back',$data); 
     }
+
+    public function logout(){
+       
+    $this->session->unset_userdata('email_shopowner','');
+    $this->session->sess_destroy();
+    // echo "<script>alert('Logged out successfully..!!');window.location='http://localhost/CRUDOperationCI/index.php/crudController/Login'</script>";
+        redirect('loginshop');
+    }
+    
 }
