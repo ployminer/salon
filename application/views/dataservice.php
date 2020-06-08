@@ -89,9 +89,10 @@
             <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu">
                 <i class="fa fa-remove fa-fw"></i>&nbsp; ปิดเมนู</a>
             <a href="back" class="w3-bar-item w3-button w3-padding"><i class="fa fa-home fa-fw"></i>&nbsp; หน้าแรก</a>
-            <a href="dataservice" class="w3-bar-item w3-button w3-padding "><i class="fa fa-users fa-fw"></i>&nbsp; ข้อมูลบริการ</a>
-            <a href="datahair" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>&nbsp; ข้อมูลช่างทำผม</a>
-            <a href="tb_time" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>&nbsp; ตารางเวลา</a>
+            <a href="dataservice" class="w3-bar-item w3-button w3-padding "><i class="fa fa-file-text fa-fw"></i>&nbsp; ข้อมูลบริการ</a>
+            <a href="datahair" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file-text-o fa-fw"></i>&nbsp; ข้อมูลช่างทำผม</a>
+            <a href="tb_time" class="w3-bar-item w3-button w3-padding"><i class="fa fa-table fa-fw"></i>&nbsp; ตารางเวลา</a>
+            <a href="back/logout" class="w3-bar-item w3-button w3-padding"><i class="fa fa-key fa-fw"></i>&nbsp; ออกจากระบบ</a>
             <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>&nbsp; Geo</a>
             <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>&nbsp; Orders</a>
             <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>&nbsp; News</a>
