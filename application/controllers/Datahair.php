@@ -21,7 +21,6 @@ class Datahair extends CI_Controller{
 
         $email_shopowner = $this->session->userdata('email_shopowner');
         $data['select'] = $this->datahairmodel->select_service($email_shopowner);
-
         $email_shopowner = $this->session->userdata('email_shopowner');
         $data['read'] = $this->datahairmodel->read_datahair($email_shopowner);
 
@@ -34,7 +33,17 @@ class Datahair extends CI_Controller{
         $this->load->view('datahair',$data); 
         
     }
-    
+    public function ToObject($Array)
+    {
+        $object = new stdClass();
+        foreach ($Array as $key => $value) {
+            if (is_array($value)) {
+                $value = $this->ToObject($value);
+            }
+            $object->$key = $value;
+        }
+        return $object;
+    }
     
      
     public function create() {
@@ -45,15 +54,21 @@ class Datahair extends CI_Controller{
         $data['con']->id_skill = '';
         $data['con']->name_employee = '';
         $data['con']->servicename = '';
+        $data['con']->id_service = '';
         $email_shopowner = $this->session->userdata('email_shopowner');
         
         $name_employee = $this->input->post('name_employee');
-        $servicename = $this->input->post('select');
+        $id_service = $this->input->post('select');
+        $data = $this->datahairmodel->read_id_service($id_service);
 
-
+        $resultObj = $this->ToObject($data);
+        foreach ($resultObj as $option) {
+            $nameoption = $option->servicename;
+        }
         $savedata = array(
             'name_employee' => $name_employee,
-            'servicename' => $servicename,
+            'id_servicename' => $id_service,
+            'servicename' => $nameoption,
             'delete' => 1 ,
             'email_shopowner' => $email_shopowner,
 
