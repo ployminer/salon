@@ -62,5 +62,7 @@ class Service extends CI_Model{
         return $query->result();
     }
 
+    
+
 }
   

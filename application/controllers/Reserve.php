@@ -83,5 +83,5 @@ class Reserve extends CI_Controller{
         $data = $this->service->read_price($id_service);
         echo json_encode($data);
     }
-     
+    
 }

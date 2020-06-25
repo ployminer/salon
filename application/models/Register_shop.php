@@ -20,6 +20,8 @@ class Register_shop extends CI_Model{
             'phone_shopowner' => $savedata['phone_shopowner'],
             'bookbank' => $savedata['bookbank'],
             'pass' => $savedata['pass'],
+            't_open' => $savedata['t_open'],
+            't_close' => $savedata['t_close'],
             'user_id' => $savedata['user_id']
 
         );
@@ -28,7 +30,7 @@ class Register_shop extends CI_Model{
         return $this->db->insert_id();
     }
 
-    public function read_member($name_shop,$name_shopowner,$email_shopowner,$phone_shopowner,$bookbank,$pass)
+    public function read_member($name_shop,$name_shopowner,$email_shopowner,$phone_shopowner,$bookbank,$pass,$t_open,$t_close)
     {
         $where = array(
             'name_shop' => $name_shop,
@@ -37,6 +39,9 @@ class Register_shop extends CI_Model{
             'phone_shopowner' => $phone_shopowner,
             'bookbank' => $bookbank,
             'pass' => $pass
+            't_open' => $t_open
+            't_close' => $t_close
+
         );
         $this->db->select('name_shop,name_shopowner,email_shopowner,phone_shopowner,bookbank,pass')->from('register_shop')->where($where);
         $qurey = $this->db->get();
