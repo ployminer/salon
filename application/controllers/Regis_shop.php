@@ -20,6 +20,9 @@ class Regis_shop extends CI_Controller{
         $phone_shopowner = $this->input->post('phone_shopowner');
         $bookbank = $this->input->post('bookbank');
         $pass = $this->input->post('pass');
+        $t_open = $this->input->post('t_open');
+        $t_close = $this->input->post('t_close');
+
 
         // if (empty($name_shop)) {
         //     $http_status = 400;

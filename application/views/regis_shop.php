@@ -49,10 +49,19 @@
                                                                                                   <div class="form-group">
                                                                                                                 <label for="re-pass"><i class="zmdi zmdi-book"></i></label>
                                                                                                                 <input type="password" name="pass" id="pass"required placeholder="รหัสผ่าน" />
-                                                                                                  </div>                                                                        
+                                                                                                  </div>             
+                                                                                                  <div class="form-group">
+                                                                                                                <label for=""><i class="zmdi zmdi-book"></i></label>
+                                                                                                                <input type="time" name="t_open" id="t_open"required placeholder="เวลาเปิดทำการ" />
+                                                                                                  </div>    
+                                                                                                  <div class="form-group">
+                                                                                                                <label for=""><i class="zmdi zmdi-book"></i></label>
+                                                                                                                <input type="time" name="t_close" id="t_close"required placeholder="เวลาปิดทำการ" />
+                                                                                                  </div>                                                       
                                                                                                   <div class="form-group form-button">
                                                                                                                 <input type="submit" name="signup" id="signup" class="form-submit" value="ยืนยัน" />
                                                                                                   </div>
+
 
                                                                                                   <!-- <div class="form-group form-button">
                                                                                                                 <input type="file" >
