@@ -38,8 +38,8 @@ class Register_shop extends CI_Model{
             'email_shopowner' => $email_shopowner,
             'phone_shopowner' => $phone_shopowner,
             'bookbank' => $bookbank,
-            'pass' => $pass
-            't_open' => $t_open
+            'pass' => $pass,
+            't_open' => $t_open,
             't_close' => $t_close
 
         );

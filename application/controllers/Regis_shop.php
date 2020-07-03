@@ -82,7 +82,9 @@ class Regis_shop extends CI_Controller{
             'email_shopowner' => $email_shopowner,
             'phone_shopowner' => $phone_shopowner,
             'bookbank' => $bookbank,
-            'pass' => $pass
+            'pass' => $pass,
+            't_open' => $t_open,
+            't_close' => $t_close
         );
 
         
