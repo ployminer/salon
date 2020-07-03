@@ -20,6 +20,8 @@ class Regis_shop extends CI_Controller{
         $phone_shopowner = $this->input->post('phone_shopowner');
         $bookbank = $this->input->post('bookbank');
         $pass = $this->input->post('pass');
+        $la = $this->input->post('la');
+        $long = $this->input->post('long');
 
         // if (empty($name_shop)) {
         //     $http_status = 400;
@@ -79,7 +81,9 @@ class Regis_shop extends CI_Controller{
             'email_shopowner' => $email_shopowner,
             'phone_shopowner' => $phone_shopowner,
             'bookbank' => $bookbank,
-            'pass' => $pass
+            'pass' => $pass,
+            'la' => $la,
+            'long' => $long
         );
 
         
