@@ -35,27 +35,28 @@
                                                                                                                 <input type="text" name="name_shopowner" id="name_shopowner"required placeholder="ชื่อเจ้าของร้าน" />
                                                                                                   </div>
                                                                                                   <div class="form-group">
-                                                                                                                <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                                                                                                <input type="email" name="email_shopowner" id="email_shopowner" required placeholder="อีเมล" />
-                                                                                                  </div>
-                                                                                                  <div class="form-group">
                                                                                                                 <label for="tel"><i class="zmdi zmdi-phone"></i></label>
                                                                                                                 <input type="tel" name="phone_shopowner" id="phone_shopowner"required placeholder="เบอร์โทรศัพท์" />
                                                                                                   </div>
                                                                                                   <div class="form-group">
+                                                                                                                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                                                                                                                <input type="email" name="email_shopowner" id="email_shopowner" required placeholder="อีเมล" />
+                                                                                                  </div>
+                                            
+                                                                                                  <!-- <div class="form-group">
                                                                                                                 <label for="re-pass"><i class="zmdi zmdi-book"></i></label>
                                                                                                                 <input type="tel" name="bookbank" id="bookbank"required placeholder="เลขที่บัญชี" />
-                                                                                                  </div>
+                                                                                                  </div> -->
                                                                                                   <div class="form-group">
                                                                                                                 <label for="re-pass"><i class="zmdi zmdi-book"></i></label>
                                                                                                                 <input type="password" name="pass" id="pass"required placeholder="รหัสผ่าน" />
                                                                                                   </div>             
                                                                                                   <div class="form-group">
-                                                                                                                <label for=""><i class="zmdi zmdi-book"></i></label>
+                                                                                                                <label for=""><i class="zmdi zmdi-time"></i></label>
                                                                                                                 <input type="time" name="t_open" id="t_open"required placeholder="เวลาเปิดทำการ" />
                                                                                                   </div>    
                                                                                                   <div class="form-group">
-                                                                                                                <label for=""><i class="zmdi zmdi-book"></i></label>
+                                                                                                                <label for=""><i class="zmdi zmdi-time"></i></label>
                                                                                                                 <input type="time" name="t_close" id="t_close"required placeholder="เวลาปิดทำการ" />
                                                                                                   </div>                                                       
                                                                                                   <div class="form-group form-button">

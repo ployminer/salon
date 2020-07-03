@@ -89,7 +89,7 @@
                                                         <?php } ?>
                                           </select>
 
-                                          <label for="country" type="date">จองเวลา</label>
+                                          <label for="country" type="time">จองเวลา</label>
                                           <select name="" id="" class="form-control required">
                                                         <option selected="" disabled="">เลือกเวลา</option>
                                                         <?php foreach ($date as $value) { ?>
@@ -120,7 +120,7 @@
                 success: function(data) {
                     var html = '';
                     var i;
-                    html = '<option  selected="" disabled="">ประเภทการล้าง</option>'
+                    html = '<option  selected="" disabled="">บริการ</option>'
                     p = '<option  selected="" disabled="">ราคา</option>'
                     for (i = 0; i < data.length; i++) {
                         html += '<option value=' + data[i].id_service + '>' + data[i].servicename + '</option>';
