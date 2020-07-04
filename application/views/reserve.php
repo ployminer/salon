@@ -80,20 +80,18 @@
                                                                       <option value='<?php echo $value->id_date ?>'><?php echo $value->date_date ?></option>
                                                         <?php } ?>
                                           </select>
-
-                                          <label for="country" type="date">จองวัน</label>
-                                          <select name="" id="" class="form-control required">
-                                                        <option>เลือกวัน</option>
-                                                        <?php foreach ($service as $value) { ?>
-                                                                      <option value='<?php echo $value->id_service ?>'><?php echo $value->servicename ?></option>
-                                                        <?php } ?>
-                                          </select>
-
+            
+                                        <label for="country">จองวัน</label>
+                                        <br>
+                                        <input name="date" id="date" type="date" class="form-control required">
+                                        </input>
+                                        <br><br>
+                                            
                                           <label for="country" type="time">จองเวลา</label>
-                                          <select name="" id="" class="form-control required">
+                                          <select name="time" id="time" class="form-control required">
                                                         <option selected="" disabled="">เลือกเวลา</option>
                                                         <?php foreach ($date as $value) { ?>
-                                                                      <option value='<?php echo $value->id_date ?>'><?php echo $value->date_date ?></option>
+                                                                      <option value='<?php echo $value->id_time ?>'><?php echo $value->date_date ?></option>
                                                         <?php } ?>
                                           </select>
 
@@ -130,10 +128,10 @@
                 }
             });
             $.ajax({
-                url: "<?php echo site_url('booking/fetch_date'); ?>",
+                url: "<?php echo site_url('reserve/time'); ?>",
                 method: "POST",
                 data: {
-                    email: email
+                    email_shopowner: email_shopowner
                 },
                 async: true,
                 dataType: 'json',
@@ -142,13 +140,13 @@
                     var i;
                     html = '<option selected="" disabled="">เวลา</option>'
                     for (i = 0; i < data.length; i++) {
-                        html += '<option value=' + data[i].id_date + '>' + data[i].date_date + '</option>';
+                        html += '<option value=' + data[i].id_time + '>' + data[i].time + '</option>';
                     }
-                    $('#date').html(html);
+                    $('#time').html(html);
                 }
             });
-            
         });
+
         $('#service').change(function() {
             var id_service = $(this).val();
             $.ajax({

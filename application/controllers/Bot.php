@@ -202,7 +202,7 @@ if(!is_null($events)){
                                     ),
                                     new UriTemplateActionBuilder(
                                             'ตรวจสอบ', // ข้อความแสดงในปุ่ม
-                                            'line://app/1653826307-OBy8ydJM' // ข้อความแสดงในปุ่ม
+                                            '' // ข้อความแสดงในปุ่ม
                                 )
                                 );
                                 $replyData = new TemplateMessageBuilder('Carousel', new CarouselTemplateBuilder(

@@ -46,7 +46,7 @@ class Reserve extends CI_Controller{
         echo json_encode($data);
     }
 
-    public function create() {
+    public function create_booking() {
         $user_id = $this->input->post('user_id');
         $data1 = $this->service->read_name($user_id);
         $resultObj = $this->ToObject($data);
@@ -64,23 +64,33 @@ class Reserve extends CI_Controller{
         $savedata = array(
             'user_id' => $user_id,
             'name_cus' => $name_cus,
-            'email' => $email,
-            'phone' => $phone,
-            'servicenam' => $servicename,
+            'email_shopowner' => $email_shopowner,
+            'technician' => $technician,
+            'servicename' => $servicename,
             'date' => $date,
+            'time' => $time
          
         );
-//        echo '<pre>';
-//        print_r($savedata);
-//        echo '</pre>';
-        $result = $this->register_cus->create_register($savedata);
-        redirect('service');
+        $result = $this->service->booking($savedata);
+        redirect('booking');
     }
 
     public function price()
     {
         $id_service = $this->input->post('id_service', TRUE);
         $data = $this->service->read_price($id_service);
+        echo json_encode($data);
+    }
+    public function time()
+    {
+        $email_shopowner = $this->input->post('email_shopowner', TRUE);
+        $time = $this->service->time($email_shopowner);
+        $resultObj = $this->ToObject($time);
+        foreach ($resultObj as $option) {
+            $open = $option->t_open;
+            $close = $option->t_close;
+        }
+        $data = $this->service->read_time($open,$close);
         echo json_encode($data);
     }
     

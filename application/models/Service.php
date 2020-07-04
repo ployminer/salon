@@ -9,6 +9,22 @@ class Service extends CI_Model{
         $this->load->database();
     }
 
+    public function booking(){
+        $data = array(
+            
+            'user_id' => $savedata['user_id'],
+            'name_cus' => $savedata['name_cus'],
+            'email' => $savedata['email'],
+            'servicename' => $savedata['servicename'],
+            'technician' => $savedata['technician'],
+            'date' => $savedata['date'],
+            'time' => $savedata['time']
+        );
+
+        $this->db->insert('reservations', $data);
+        return $this->db->insert_id();
+    }
+
     public function read_name($userid){
         $where = array(
             'userid' => $userid,
@@ -61,8 +77,18 @@ class Service extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
-
-    
-
+    public function read_time($open,$close){
+        $sql = " date WHERE time BETWEEN '$open' and '$close' ";
+        $query = $this->db->get($sql);
+        return $query->result();
+    }
+    public function time($email_shopowner){
+        $where = array(
+            'email_shopowner' => $email_shopowner
+        );
+        $this->db->select('t_open,t_close')->from('register_shop')->where($where);
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
   
