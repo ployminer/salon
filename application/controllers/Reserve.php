@@ -63,7 +63,6 @@ class Reserve extends CI_Controller{
 
         $savedata = array(
             'user_id' => $user_id,
-            'name_cus' => $name_cus,
             'email' => $email,
             'phone' => $phone,
             'servicenam' => $servicename,

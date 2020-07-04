@@ -82,13 +82,11 @@
                                           </select>
 
                                           <label for="country" type="date">จองวัน</label>
-                                          <select name="" id="" class="form-control required">
-                                                        <option>เลือกวัน</option>
-                                                        <?php foreach ($service as $value) { ?>
-                                                                      <option value='<?php echo $value->id_service ?>'><?php echo $value->servicename ?></option>
-                                                        <?php } ?>
-                                          </select>
-
+                                          <input name="date" id="date" type="date" class="form-control required">
+                                                        
+                                                        </input>
+                                            <br>
+                                            
                                           <label for="country" type="date">จองเวลา</label>
                                           <select name="" id="" class="form-control required">
                                                         <option selected="" disabled="">เลือกเวลา</option>
