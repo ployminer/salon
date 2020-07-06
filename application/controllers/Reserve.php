@@ -47,11 +47,13 @@ class Reserve extends CI_Controller{
     }
 
     public function create_booking() {
-        $user_id = $this->input->post('user_id');
+        $shop = $this->input->post('shop');
+        $user_id = $this->input->post('userid');
         $data1 = $this->service->read_name($user_id);
-        $resultObj = $this->ToObject($data);
-
-       
+        $resultObj = $this->ToObject($data1);
+        foreach ($resultObj as $name) {
+            $name_cus = $name->name_cus;
+        }
         $service = $this->input->post('service');
         $data = $this->service->read_service($service);
         $resultObj = $this->ToObject($data);
@@ -59,20 +61,22 @@ class Reserve extends CI_Controller{
             $nameoption = $option->servicename;
             $price = $option->priceservice;
         }
-
-
+        $technician = $this->input->post('hair');
+        $date = $this->input->post('date');
+        $time = $this->input->post('time');
         $savedata = array(
             'user_id' => $user_id,
             'name_cus' => $name_cus,
-            'email_shopowner' => $email_shopowner,
+            'email_shopowner' => $shop,
             'technician' => $technician,
-            'servicename' => $servicename,
+            'servicename' => $nameoption,
+            'price' => $price,
             'date' => $date,
             'time' => $time
          
         );
         $result = $this->service->booking($savedata);
-        redirect('booking');
+        redirect('reserve');
     }
 
     public function price()

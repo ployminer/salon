@@ -9,13 +9,14 @@ class Service extends CI_Model{
         $this->load->database();
     }
 
-    public function booking(){
+    public function booking($savedata){
         $data = array(
             
             'user_id' => $savedata['user_id'],
             'name_cus' => $savedata['name_cus'],
-            'email' => $savedata['email'],
+            'email_shopowner' => $savedata['email_shopowner'],
             'servicename' => $savedata['servicename'],
+            'price' => $savedata['price'],
             'technician' => $savedata['technician'],
             'date' => $savedata['date'],
             'time' => $savedata['time']
@@ -27,7 +28,7 @@ class Service extends CI_Model{
 
     public function read_name($userid){
         $where = array(
-            'userid' => $userid,
+            'user_id' => $userid,
         );
         $this->db->select('name_cus')->from('register_cus')->where($where);
         $query = $this->db->get();
@@ -36,7 +37,7 @@ class Service extends CI_Model{
 
     public function read_service($service){
         $where = array(
-            'id_skill' => $service,
+            'id_service' => $service,
         );
         $this->db->select('servicename,priceservice')->from('servicetype')->where($where);
         $query = $this->db->get();
