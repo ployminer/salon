@@ -52,8 +52,9 @@
               <h3 >จองบริการทำผม</h3>
 
               <div class="container">
-                            <form action="/action_page.php">
-                            
+                            <form action="<?php echo base_url('reserve/create_booking') ?>" method="post" class="contact100-form validate-form" style="width:100%;">
+                            <!-- <form action="reserve/create_booking"> -->
+                            <input type="hidden" id="userid" name="userid" value="">
 
                                           <label for="country">ร้านบริการ</label>
                                           <select name="shop" id="shop"  class="form-control required">
@@ -90,9 +91,6 @@
                                           <label for="country" type="time">จองเวลา</label>
                                           <select name="time" id="time" class="form-control required">
                                                         <option selected="" disabled="">เลือกเวลา</option>
-                                                        <?php foreach ($date as $value) { ?>
-                                                                      <option value='<?php echo $value->id_time ?>'><?php echo $value->date_date ?></option>
-                                                        <?php } ?>
                                           </select>
 
                                           <input type="submit" value="Submit">
@@ -100,8 +98,23 @@
               </div>
 
 </body>
+<script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/95c75768/cloudflare-static/rocket-loader.min.js" data-cf-settings="3d44b465189b22b734a3929d-|49" defer=""></script>
 <script src="jquery-3.5.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+    <script src="liff-starter.js"></script>
+    <script>
+        window.onload = function (e) {
+            liff.init(function (data) {
+                initializeApp(data);
+            });
+        };
+
+        function initializeApp(data) {
+            document.getElementById('userid').value = data.context.userId;
+        }
+    </script>
 <script>
     $(document).ready(function() {
         
@@ -140,7 +153,7 @@
                     var i;
                     html = '<option selected="" disabled="">เวลา</option>'
                     for (i = 0; i < data.length; i++) {
-                        html += '<option value=' + data[i].id_time + '>' + data[i].time + '</option>';
+                        html += '<option value=' + data[i].time + '>' + data[i].time + '</option>';
                     }
                     $('#time').html(html);
                 }
@@ -178,7 +191,7 @@
                     var html = '';
                     var i;
                     for (i = 0; i < data.length; i++) {
-                        html += '<option value=' + data[i].id_skill + '>' + data[i].name_employee + '</option>';
+                        html += '<option value=' + data[i].name_employee + '>' + data[i].name_employee + '</option>';
                     }
                     $('#hair').html(html);
                 }
