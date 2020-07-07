@@ -125,7 +125,7 @@
 
         <div class="w3-container w3-center w3-animate-top">
             <h1>ยินดีต้อนรับ</h1>
-            <p>The w3-animate-top class slides in an element from the top.</p>
+            
         </div>
     </div>
 
