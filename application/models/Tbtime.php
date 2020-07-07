@@ -9,6 +9,16 @@ class Tbtime extends CI_Model{
         $this->load->database();
     }
 
+    public function read_reserve($email_shopowner){
+        $where = array(
+            'email_shopowner' => $email_shopowner
+
+        );
+        $this->db->select('technician,name_cus,date,time,servicename')->from('reservations')->where($where);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function read_register_cus()
     {
         $this->db->select('id_skill,,name_employee,email_shopowner,servicename')->from('skilltype');

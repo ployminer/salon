@@ -18,7 +18,6 @@ class Regis_shop extends CI_Controller{
         $name_shopowner = $this->input->post('name_shopowner');
         $email_shopowner = $this->input->post('email_shopowner');
         $phone_shopowner = $this->input->post('phone_shopowner');
-        $bookbank = $this->input->post('bookbank');
         $pass = $this->input->post('pass');
         $t_open = $this->input->post('t_open');
         $t_close = $this->input->post('t_close');
@@ -81,7 +80,6 @@ class Regis_shop extends CI_Controller{
             'name_shopowner' => $name_shopowner,
             'email_shopowner' => $email_shopowner,
             'phone_shopowner' => $phone_shopowner,
-            'bookbank' => $bookbank,
             'pass' => $pass,
             't_open' => $t_open,
             't_close' => $t_close
@@ -103,7 +101,6 @@ class Regis_shop extends CI_Controller{
         $name_shopowner = $this->input->post('name_shopowner');
         $email_shopowner = $this->input->post('email_shopowner');
         $phone_shopowner = $this->input->post('phone_shopowner');
-        $bookbank = $this->input->post('bookbank');
         $pass = $this->input->post('pass');
         
         

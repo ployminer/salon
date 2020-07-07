@@ -129,7 +129,8 @@
                         <!-- <th>ลำดับ</th> -->
                         <th>ชื่อพนักงาน</th>
                         <th>ชื่อลูกค้า</th>
-                        <th>วันเวลาที่จอง</th>
+                        <th>วันที่จอง</th>
+                        <th>เวลาที่จอง</th>
                         <th>บริการที่เลือก</th>
 
                         <!-- <th>ระยะเวลาทำ</th> -->
@@ -140,14 +141,18 @@
 
                 </thead>
 
-                <?php foreach ($read as $value) { ?>
+                <?php foreach ($time as $value) { ?>
                     <tbody>
                         <tr>
-<!-- 
-                            <td><?php echo $value->name_employee ?></td>
+
+                            <td><?php echo $value->technician ?></td>
                             <td><?php echo $value->name_cus ?></td>
+                            <td><?php echo $value->date ?></td>
                             <td><?php echo $value->time ?></td>
-                             -->
+                            <td><?php echo $value->servicename ?></td>
+
+
+                            
                            
                             <!-- <td><button type="button"  data-href="<?php echo $value->id_skill ?>" id="delete" data-toggle="modal" ">ลบ</button> -->
     
