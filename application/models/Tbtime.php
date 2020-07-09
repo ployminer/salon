@@ -14,7 +14,7 @@ class Tbtime extends CI_Model{
             'email_shopowner' => $email_shopowner
 
         );
-        $this->db->select('technician,name_cus,date,time,servicename')->from('reservations')->where($where);
+        $this->db->select('id_reser,technician,name_cus,date,time,servicename')->from('reservations')->where($where);
         $query = $this->db->get();
         return $query->result();
     }
@@ -37,6 +37,12 @@ class Tbtime extends CI_Model{
         // print_r($query->result());
         // exit;
         return $query->result();
+    }
+    public function delete_reserve($id_reser)
+    {
+        $this->db->where('id_reser', $id_reser);
+        $this->db->delete('reservations');
+        return $this->db->affected_rows();
     }
 }
   

@@ -22,5 +22,12 @@ class Back_end extends CI_Model{
         // exit;
         return $query->result();
     }
+    public function promotion()
+    {
+        $this->db->select('*');
+        $this->db->from('register_shop');
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
   

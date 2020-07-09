@@ -22,6 +22,10 @@
              folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet" href="<?php echo base_url('assets/carcareoffice/dist/css/skins/_all-skins.min.css') ?>">
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 <style>
     html,
@@ -54,10 +58,12 @@
 </style>
 
 <body class="w3-white">
+    
 
     <!-- Top container -->
     <div class="w3-bar w3-top w3-indigo w3-large" style="z-index:4">
-        <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i> &nbsp;เมนู</button>
+        <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();">
+            <i class="fa fa-bars"></i> &nbsp;เมนู</button>
         <span class="w3-bar-item w3-left">SalonManagement</span>
 
     </div>
@@ -66,21 +72,18 @@
     <nav class="w3-sidebar w3-collapse w3-light-blue w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
         <div class="w3-container w3-row">
             <div class="w3-col s4">
-                <img src="<?php echo base_url('assets/home/img/beauty-salon.png')?>" class="w3-circle w3-margin-right" style="width:46px">
+                <img src="<?php echo base_url('assets/home/img/beauty-salon.png') ?>" class="w3-circle w3-margin-right" style="width:46px">
             </div>
             <div class="w3-col s8 w3-bar">
-            <?php foreach ($read as $value) {?>
+            <?php foreach ($read_shop as $value) {?>
                 <h3><?php echo $value->name_shop?></h3>
-                <?php } ?>
-                <!-- <span>ยินดีต้อนรับ</span><br>
-                <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
-                <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
-                <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a> -->
+                <?php } ?>  
             </div>
         </div>
         <hr>
         <div class="w3-container">
             <h5>Dashboard</h5>
+            <form action="<?php echo base_url('promotion/create') ?>" method="POST" class="register-form" id="register-form">
         </div>
         <div class="w3-bar-block">
             <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu">
@@ -107,32 +110,97 @@
     <div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
         <!-- Header -->
-        <!-- <header class="w3-container" style="padding-top:22px">
+        <header class="w3-container" style="padding-top:22px">
             <div class="w3-row">
-            <div class="w3-col" style="width:75%">
+                <div class="w3-col" style="width:75%">
                     <p>
-                        <h4><b><i class="fa fa-dashboard"></i></b></h4>
                     </p>
                 </div>
-                <div class="w3-col" style="width:25%">
-                    <p><a href="<?php echo base_url('clinicoffice/blog/create') ?>" class="btn btn-default pull-right">
-                            <span class="fa fa-plus">เพิ่ม</span>
-                        </a></p>
+                <!-- Button trigger modal -->
+                <div class="w3-col" style="width:25%" >
+                <button type="button" href="<?php echo base_url('dataservice/create') ?>" class="btn btn-primary pull-right waves-effect waves-light"  data-toggle="modal" data-target="#modalCart">เพิ่ม</button>
+                <!-- Modal: modalCart -->
+                <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">เพิ่มโปรโมชัน</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!-- Body -->
+    
+      
+      <div class="col-md-12"> <br />
+      <form  name="addproduct" action="" method="post" enctype="multipart/form-data"  class="form-horizontal">
+      <div class="form-group">
+      <div class="col-sm-12">
+      <input type="hidden" id="email_shopowner" name="email_shopowner">
+            <p> โปรโมชัน</p>
+            <input type="text"  name="promotion" id="promotion" class="form-control" required placeholder="โปรโมชัน" >
+      </div>
+      </div>
+      <div class="form-group">
+          <div class="col-sm-7" >
+            <button href="<?php echo base_url('promotion/index')?>" type="submit" class="btn btn-primary  " name="btnadd"> เพิ่ม </button>
+            <input type="hidden"  name="method" > 
+          </div>
+        </div>
+      </form>
+      </div>
+    
+      </div>
+
                 </div>
             </div>
 
 
-        </header> -->
+        </header>
+        <br>
+        <div style="overflow-x:auto;">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <!-- <th>ลำดับ</th> -->
+                        <th>โปรโมชัน</th>
+                        <th>แก้ไข</th>
+                        <th>ลบ</th>
+                    </tr>
 
-        <div class="w3-container w3-center w3-animate-top">
-            <h1>ยินดีต้อนรับ</h1>
-            
+
+                </thead>
+
+                <?php foreach ($read as $value) { ?>
+                    <tbody>
+                        <tr>
+                            <!-- <td><?php echo $value->id_service ?></td> -->
+                            <td><?php echo $value->promotion ?></td>
+                            
+
+
+                            
+                            <td><a href="<?php echo base_url('promotion/update_promotion/' . $value->id_promotion) ?>" >
+                            <span>แก้ไข</span>
+                            <td><a href="<?php echo base_url('promotion/delete/' . $value->id_promotion) ?>" >
+                            <span>ลบ</span>
+                        </a></td>
+                           
+                        </tr>
+                    </tbody>
+                <?php } ?>
+            </table>
         </div>
+
+
+
+        <!-- End page content -->
     </div>
 
 
 
-
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script>
         // Get the Sidebar
         var mySidebar = document.getElementById("mySidebar");
@@ -156,6 +224,33 @@
             mySidebar.style.display = "none";
             overlayBg.style.display = "none";
         }
+
+        $(function() {
+
+            $('#confirm-delete').on('show.bs.modal', function(e) {
+                $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+            });
+            $('.clickDelete').on('click', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "GET",
+                    url: "<?php echo base_url('dataservice/delete') ?>" + '/' + $(this).attr('href'),
+                    data: '',
+                    dataType: "json",
+                    success: function(obj) {
+                        location.reload();
+                    }
+                });
+            });
+
+            $('#nav-marketing, #nav-profileuser').addClass('active');
+
+
+
+
+
+
+        });
     </script>
 
 </body>

@@ -18,7 +18,7 @@ class Tb_time extends CI_Controller{
         $email_shopowner = $this->session->userdata('email_shopowner');
         $data['read_shop'] = $this->tbtime->read_register_shop($email_shopowner);
         $data['time'] = $this->tbtime->read_reserve($email_shopowner);
-        // print_r($data['read_time']);
+        // print_r($data['time']);
         // exit;
         $data['read'] = $this->tbtime->read_register_cus();
         $this->load->view('tb_time',$data); 
@@ -29,16 +29,19 @@ class Tb_time extends CI_Controller{
         return $query->result();
     }
 
-    public function read_reserve(){
-        $savedata = array(
-            'technician' => $technician,
-            'name_cus' => $name_cus,
-            'time' => $time,
-            'date' => date ,
-            'servicename' => $servicename
-        );
-            $result = $this->tbtime->read_reserve($savedata);
-        redirect('tb_time');
-       
+    public function delete($id_reser){
+        if (!empty($id_reser)) {
+
+            $result = $this->tbtime->delete_reserve($id_reser);
+        }
+
+        $response = array('Delete SUCESS');
+        $this->output
+                ->set_status_header(200)
+                ->set_content_type('application/json', 'utf-8')
+                ->set_output(json_encode($response))
+                ->_display();
+                    redirect('tb_time');
+        exit;
     }
 }

@@ -53,8 +53,19 @@ class Bot extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->helper('url');
-        
+        $this->load->model('promotion_model');
       
+    }
+    public function ToObject($Array)
+    {
+        $object = new stdClass();
+        foreach ($Array as $key => $value) {
+            if (is_array($value)) {
+                $value = $this->ToObject($value);
+            }
+            $object->$key = $value;
+        }
+        return $object;
     }
     public function index() {
 $httpClient = new CurlHTTPClient(LINE_MESSAGE_ACCESS_TOKEN);
@@ -173,7 +184,7 @@ if(!is_null($events)){
                                 new UriTemplateActionBuilder(
                                     'สมัครสมาชิกร้านค้า', // ข้อความแสดงในปุ่ม
                                     'line://app/1653826307-OBy8ydJM' // ข้อความแสดงในปุ่ม
-                            ),
+                            )
                             );
                             
                             $replyData = new TemplateMessageBuilder('Carousel', new CarouselTemplateBuilder(
@@ -186,154 +197,56 @@ if(!is_null($events)){
                                     )
                                     )
                             );
-                        
                             break;
 
                             case "บริการ":
-                                // กำหนด action 4 ปุ่ม 4 ประเภท
                                 $actionBuilder = array(
-    //                                new UriTemplateActionBuilder(
-    //                                        'Facebook', // ข้อความแสดงในปุ่ม
-    //                                        'https://www.facebook.com/parin.zaa.39'
-    //                                ),
                                     new UriTemplateActionBuilder(
-                                            'จอง', // ข้อความแสดงในปุ่ม
-                                            'https://liff.line.me/1653826307-lDgjgq3E' // ข้อความแสดงในปุ่ม
+                                        'จอง', // ข้อความแสดงในปุ่ม
+                                        'https://liff.line.me/1653826307-lDgjgq3E' // ข้อความแสดงในปุ่ม
                                     ),
                                     new UriTemplateActionBuilder(
-                                            'ตรวจสอบ', // ข้อความแสดงในปุ่ม
-                                            '' // ข้อความแสดงในปุ่ม
+                                        'ตรวจสอบ', // ข้อความแสดงในปุ่ม
+                                        'https://liff.line.me/1653826307-lDgjgq3E' // ข้อความแสดงในปุ่ม
                                 )
                                 );
+                                
                                 $replyData = new TemplateMessageBuilder('Carousel', new CarouselTemplateBuilder(
                                         array(
                                     new CarouselColumnTemplateBuilder(
-                                        'จองบริการ', 'ตรวจสอบการจอง', 'https://image.freepik.com/free-photo/hairdresser-elements_1303-1316.jpg', $actionBuilder
-                                    )
+                                        'จองบริการ', 'ตรวจสอบการจอง', 'https://image.freepik.com/free-photo/top-view-uncompleted-questionnaire_23-2148265544.jpg', $actionBuilder
+                                        
+                                    ),
+                                
                                         )
                                         )
                                 );
                                 break;
+
 
                                 case "โปรโมชัน":
-                                    // กำหนด action 4 ปุ่ม 4 ประเภท
-                                    $actionBuilder = array(
-                                        new UriTemplateActionBuilder(
-                                                'โปรโมชัน', // ข้อความแสดงในปุ่ม
-                                                'line://app/1653826307-Kakok2GR' // ข้อความแสดงในปุ่ม
-                                        ),
-                                        new UriTemplateActionBuilder(
-                                            'ตำแหน่งร้านที่ 1', // ข้อความแสดงในปุ่ม
-                                            'line://app/1653826307-OBy8ydJM' // ข้อความแสดงในปุ่ม
-                                    ),
-                                    );
-                                    ///////////////////////////////////////////////////////////////////////////////////////////////////
-                                        $actionBuilder1 = array(
-                                                                           new UriTemplateActionBuilder(
-                                                                                   'โปรโมชัน', // ข้อความแสดงในปุ่ม
-                                                                                   'https://www.facebook.com/parin.zaa.39'
-                                                                           ),
-                                                                            new UriTemplateActionBuilder(
-                                                                                    'ตำแหน่งร้านที่ 2', // ข้อความแสดงในปุ่ม
-                                                                                    'line://app/1653826307-Kakok2GR' // ข้อความแสดงในปุ่ม
-                                                                            ),
-                                    );
-                                    ///////////////////////////////////////////////////////////////////////////////////////////////////
-                                    $actionBuilder2 = array(
-                                        new UriTemplateActionBuilder(
-                                                'โปรโมชัน', // ข้อความแสดงในปุ่ม
-                                                'https://www.facebook.com/parin.zaa.39'
-                                        ),
-                                         new UriTemplateActionBuilder(
-                                                 'ตำแหน่งร้านที่ 3', // ข้อความแสดงในปุ่ม
-                                                 'line://app/1653826307-Kakok2GR' // ข้อความแสดงในปุ่ม
-                                         ),
-                                    );
-                                    ///////////////////////////////////////////////////////////////////////////////////////////////
-                                    $replyData = new TemplateMessageBuilder('Carousel', new CarouselTemplateBuilder(
-                                            array(
-                                        new CarouselColumnTemplateBuilder(
-                                            'ร้านที่ 1', 'ที่อยู่...', 'https://image.freepik.com/free-photo/woman-washing-head-hairsalon_1157-27180.jpg', $actionBuilder
-                                            
-                                        ),
-                                    ///////////////////////////////////////////////////////////////////////////////////////////////////
-                                        new CarouselColumnTemplateBuilder(
-                                            'ร้านที่ 2', 'ที่อยู่...', 'https://image.freepik.com/free-photo/barber-makes-hair-styling-with-hair-spray-after-haircut-barber-shop_160566-3.jpg', $actionBuilder1
-                                          
-                                        ),
-                                    /////////////////////////////////////////////////////////////////////////////////////////////////////
-                                        new CarouselColumnTemplateBuilder(
-                                            'ร้านที่ 3', 'ที่อยู่...', 'https://image.freepik.com/free-photo/hairdresser-colored-hair-her-client-hair-salon_1157-27194.jpg', $actionBuilder1
-                                      
-                                    ),
+                                    $result =  $this->promotion_model->promotion();
+                                    $resultObj = $this->ToObject($result);
+                                    $columns = array();
+                                    $img_url = "https://scontent.fbkk5-5.fna.fbcdn.net/v/t1.0-9/90273871_2852650564830014_225063025114087424_n.jpg?_nc_cat=100&_nc_sid=85a577&_nc_eui2=AeEVm8xmbUF7fANn-F3VU2bx4n4rNBIaWt3ifis0Ehpa3Q004nbkS52hmBl3Vx1wl1q0KLyJjOyB4bVePZu4oq76&_nc_oc=AQlOY5-NNtdH3Q6mZ5FISykHKh2W9pPM89Ms616a9UziS4xgBDXSXmU4rRU9YMrUeOU&_nc_ht=scontent.fbkk5-5.fna&oh=bf077b4217d60b88fab9376411318a68&oe=5ED8D238";
+                                    foreach ($resultObj as $pro) {
+                                        
+                                        $actions = array(
+                                            // new UriTemplateActionBuilder(
+                                            //     'จองโปรโมชัน', // ข้อความแสดงในปุ่ม
+                                            //     'https://liff.line.me/1653826205-Q3mkmJPp' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                                            // ),
+                                            new UriTemplateActionBuilder(
+                                                'โทร',
+                                                'tel:' . $pro->phone_shopowner
                                             )
-                                            )
-                                    );
-                                
+                                        );
+                                        $column = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselColumnTemplateBuilder($pro->name_shop,$pro->promotion, $img_url, $actions);
+                                        $columns[] = $column;
+                                    }
+                                    $carousel = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselTemplateBuilder($columns);
+                                    $replyData = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder('Carousel', $carousel);
                                     break;
-        
-                                
-//                         case "โปรโมชัน":
-//                             // กำหนด action 4 ปุ่ม 4 ประเภท
-//                             $actionBuilder = array(
-// //                                new UriTemplateActionBuilder(
-// //                                        'Facebook', // ข้อความแสดงในปุ่ม
-// //                                        'https://www.facebook.com/parin.zaa.39'
-// //                                ),
-//                                 new UriTemplateActionBuilder(
-//                                         'โทร', // ข้อความแสดงในปุ่ม
-//                                         'tel://0652626422' // ข้อความแสดงในปุ่ม
-//                                 )
-//                             );
-//             ///////////////////////////////////
-//                             // $actionBuilder2 = array(
-//                             //     new UriTemplateActionBuilder(
-//                             //             'Facebook', // ข้อความแสดงในปุ่ม
-//                             //             'https://www.facebook.com/parin.zaa.39'
-//                             //     ),
-//                             //      new UriTemplateActionBuilder(
-//                             //              'สมัครสมาชิก', // ข้อความแสดงในปุ่ม
-//                             //              'line://app/1653826307-Kakok2GR' // ข้อความแสดงในปุ่ม
-//                             //      ),
-//                             // );
-//             ///////////////////////////////////
-//                             $replyData = new TemplateMessageBuilder('Carousel', new CarouselTemplateBuilder(
-//                                     array(
-//                                 new CarouselColumnTemplateBuilder(
-//                                         'ติดต่อเรา', 'Salon', 'https://www.21dayfixfitness.com/wp-content/uploads/2018/09/%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B9%88%E0%B8%AD%E0%B9%80%E0%B8%A3%E0%B8%B2.jpg', $actionBuilder
-//                                 ),
-//             //////////////////////////////////
-//                                 // new CarouselColumnTemplateBuilder(
-//                                 //     'ลงทะเบียนลูกค้า', 'กรุณาลงทะเบียน', 'https://img.freepik.com/free-vector/online-registration-concept-with-isometric-view_23-2147976707.jpg?size=338&ext=jpg', $actionBuilder1
-                                  
-//                                 // ),
-//             ///////////////////////////////////
-//                                     )
-//                                     )
-//                             );
-//                             break;
-
-                            case "ร้านบริการ":
-                                // กำหนด action 4 ปุ่ม 4 ประเภท
-                                $actionBuilder = array(
-    //                                new UriTemplateActionBuilder(
-    //                                        'Facebook', // ข้อความแสดงในปุ่ม
-    //                                        'https://www.facebook.com/parin.zaa.39'
-    //                                ),
-                                    // new UriTemplateActionBuilder(
-                                    //         'โทร', // ข้อความแสดงในปุ่ม
-                                    //         'tel://0652626422' // ข้อความแสดงในปุ่ม
-                                    // )
-                                );
-                                $replyData = new TemplateMessageBuilder('Carousel', new CarouselTemplateBuilder(
-                                        array(
-                                    new CarouselColumnTemplateBuilder(
-                                            'ติดต่อเรา', 'Salon', 'https://www.21dayfixfitness.com/wp-content/uploads/2018/09/%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B9%88%E0%B8%AD%E0%B9%80%E0%B8%A3%E0%B8%B2.jpg', $actionBuilder
-                                    )
-                                        )
-                                        )
-                                );
-                                break;
 
                     default:
                         $textReplyMessage = " คุณไม่ได้พิมพ์ ค่า ตามที่กำหนด";

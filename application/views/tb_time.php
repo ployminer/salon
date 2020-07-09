@@ -22,6 +22,10 @@
              folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet" href="<?php echo base_url('assets/carcareoffice/dist/css/skins/_all-skins.min.css') ?>">
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 <style>
     html,
@@ -54,11 +58,12 @@
 </style>
 
 <body class="w3-white">
+    
 
     <!-- Top container -->
     <div class="w3-bar w3-top w3-indigo w3-large" style="z-index:4">
         <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();">
-        <i class="fa fa-bars"></i> &nbsp;เมนู</button>
+            <i class="fa fa-bars"></i> &nbsp;เมนู</button>
         <span class="w3-bar-item w3-left">SalonManagement</span>
 
     </div>
@@ -67,22 +72,18 @@
     <nav class="w3-sidebar w3-collapse w3-light-blue w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
         <div class="w3-container w3-row">
             <div class="w3-col s4">
-                <img src="<?php echo base_url('assets/home/img/beauty-salon.png')?>" class="w3-circle w3-margin-right" style="width:46px">
+                <img src="<?php echo base_url('assets/home/img/beauty-salon.png') ?>" class="w3-circle w3-margin-right" style="width:46px">
             </div>
             <div class="w3-col s8 w3-bar">
             <?php foreach ($read_shop as $value) {?>
                 <h3><?php echo $value->name_shop?></h3>
                 <?php } ?>  
-                <!-- <span>"ชื่อร้านนั้นๆ"</span> -->
-                <!-- <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
-                <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
-                <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a> -->
             </div>
         </div>
         <hr>
         <div class="w3-container">
             <h5>Dashboard</h5>
-            <form action="<?php echo base_url('')?>" method="POST" class="register-form" id="register-form"> 
+            <form action="<?php echo base_url('') ?>" method="POST" class="register-form" id="register-form">
         </div>
         <div class="w3-bar-block">
             <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu">
@@ -91,6 +92,7 @@
             <a href="dataservice" class="w3-bar-item w3-button w3-padding "><i class="fa fa-file-text fa-fw"></i>&nbsp; ข้อมูลบริการ</a>
             <a href="datahair" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file-text-o fa-fw"></i>&nbsp; ข้อมูลช่างทำผม</a>
             <a href="tb_time" class="w3-bar-item w3-button w3-padding"><i class="fa fa-table fa-fw"></i>&nbsp; ตารางเวลา</a>
+            <a href="promotion" class="w3-bar-item w3-button w3-padding"><i class="fa fa-table fa-fw"></i>&nbsp; โปรโมชัน</a>
             <a href="back/logout" class="w3-bar-item w3-button w3-padding"><i class="fa fa-key fa-fw"></i>&nbsp; ออกจากระบบ</a>
             <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>&nbsp; Geo</a>
             <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>&nbsp; Orders</a>
@@ -110,13 +112,18 @@
         <!-- Header -->
         <header class="w3-container" style="padding-top:22px">
             <div class="w3-row">
-            <div class="w3-col" style="width:75%">
+                <div class="w3-col" style="width:75%">
+                    <p>
+                    </p>
                 </div>
-                <!-- <div class="w3-col" style="width:25%">
-                    <p><a href="" class="btn btn-default pull-right">
-                            <span class="fa fa-plus">เพิ่ม</span>
-                        </a></p>
-                </div> -->
+                <!-- Modal: modalCart -->
+                <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      </div>
+
+                </div>
             </div>
 
 
@@ -126,16 +133,12 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <!-- <th>ลำดับ</th> -->
                         <th>ชื่อพนักงาน</th>
                         <th>ชื่อลูกค้า</th>
                         <th>วันที่จอง</th>
                         <th>เวลาที่จอง</th>
                         <th>บริการที่เลือก</th>
-
-                        <!-- <th>ระยะเวลาทำ</th> -->
-                        <!-- <th>แก้ไข</th>
-                        <th>ลบ</th> -->
+                        <th>ยกเลิกการจอง</th>
                     </tr>
 
 
@@ -144,7 +147,6 @@
                 <?php foreach ($time as $value) { ?>
                     <tbody>
                         <tr>
-
                             <td><?php echo $value->technician ?></td>
                             <td><?php echo $value->name_cus ?></td>
                             <td><?php echo $value->date ?></td>
@@ -152,17 +154,19 @@
                             <td><?php echo $value->servicename ?></td>
 
 
+
                             
+                            
+                            <td><a href="<?php echo base_url('tb_time/delete/' . $value->id_reser) ?>" >
+                            <span>ยกเลิก</span>
+                        </a></td>
                            
-                            <!-- <td><button type="button"  data-href="<?php echo $value->id_skill ?>" id="delete" data-toggle="modal" ">ลบ</button> -->
-    
-                            </td>
                         </tr>
                     </tbody>
                 <?php } ?>
             </table>
         </div>
-    
+
 
 
         <!-- End page content -->
@@ -170,7 +174,7 @@
 
 
 
-
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script>
         // Get the Sidebar
         var mySidebar = document.getElementById("mySidebar");
@@ -194,6 +198,33 @@
             mySidebar.style.display = "none";
             overlayBg.style.display = "none";
         }
+
+        $(function() {
+
+            $('#confirm-delete').on('show.bs.modal', function(e) {
+                $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+            });
+            $('.clickDelete').on('click', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "GET",
+                    url: "<?php echo base_url('dataservice/delete') ?>" + '/' + $(this).attr('href'),
+                    data: '',
+                    dataType: "json",
+                    success: function(obj) {
+                        location.reload();
+                    }
+                });
+            });
+
+            $('#nav-marketing, #nav-profileuser').addClass('active');
+
+
+
+
+
+
+        });
     </script>
 
 </body>

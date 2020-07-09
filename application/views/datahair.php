@@ -96,6 +96,7 @@
             <a href="dataservice" class="w3-bar-item w3-button w3-padding "><i class="fa fa-file-text fa-fw"></i>&nbsp; ข้อมูลบริการ</a>
             <a href="datahair" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file-text-o fa-fw"></i>&nbsp; ข้อมูลช่างทำผม</a>
             <a href="tb_time" class="w3-bar-item w3-button w3-padding"><i class="fa fa-table fa-fw"></i>&nbsp; ตารางเวลา</a>
+            <a href="promotion" class="w3-bar-item w3-button w3-padding"><i class="fa fa-table fa-fw"></i>&nbsp; โปรโมชัน</a>
             <a href="back/logout" class="w3-bar-item w3-button w3-padding"><i class="fa fa-key fa-fw"></i>&nbsp; ออกจากระบบ</a>
             <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>&nbsp; Geo</a>
             <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>&nbsp; Orders</a>
