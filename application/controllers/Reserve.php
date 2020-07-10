@@ -76,7 +76,7 @@ class Reserve extends CI_Controller{
          
         );
         $result = $this->service->booking($savedata);
-        redirect('reserve');
+        redirect('booking');
     }
 
     public function price()
